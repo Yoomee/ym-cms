@@ -1,0 +1,7 @@
+%h1 Pages
+-if pages.empty?
+  %p There aren't any pages yet.
+-else
+  %ul
+    -pages.each do |page|
+      %li=page.title
