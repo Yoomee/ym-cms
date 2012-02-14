@@ -4,4 +4,4 @@
 -else
   %ul
     -pages.each do |page|
-      %li=page.title
+      =render("page", :page => page)

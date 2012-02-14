@@ -1,7 +1,7 @@
 module YmCMS::PagesController
   def self.included(base)
     base.expose(:page)
-    base.expose(:pages) { Page.all}
+    base.expose(:pages) { Page.root }
   end
   
   def create
