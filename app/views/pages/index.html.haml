@@ -3,5 +3,5 @@
   %p There aren't any pages yet.
 -else
   %ul
-    -pages.each do |page|
+    -pages.root.each do |page|
       =render("page", :page => page)
