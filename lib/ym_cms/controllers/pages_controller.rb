@@ -1,4 +1,5 @@
-module YmCMS::PagesController
+module YmCms::PagesController
+  
   def self.included(base)
     base.expose(:page)
     base.expose(:pages){Page.scoped_all}
@@ -10,7 +11,7 @@ module YmCMS::PagesController
     else
       render :action => "new"
     end
-  end 
+  end
   
   def update
     if page.save
@@ -19,4 +20,5 @@ module YmCMS::PagesController
       render :action => "edit"
     end
   end
+  
 end

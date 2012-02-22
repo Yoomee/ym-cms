@@ -1,2 +1,6 @@
 %h1=page.title
 %p=page.text
+
+=options_panel do
+  =link_to("Edit page", edit_page_path)
+  =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")

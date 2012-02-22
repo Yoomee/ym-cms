@@ -5,3 +5,6 @@
   %ul
     -pages.root.each do |page|
       =render("page", :page => page)
+
+=options_panel do
+  =link_to("New page", new_page_path)

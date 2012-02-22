@@ -1,4 +1,5 @@
 module YmCms::Page
+  
   def self.included(base)
     base.validates :title, :presence => true
     base.belongs_to :parent, :class_name => "Page"
@@ -12,9 +13,10 @@ module YmCms::Page
     if parent_id.present?
       if parent_id == id
         errors.add(:parent, "can't be this page")
-      elsif child_ids.include?(parent_id)
+      elsif !new_record? && child_ids.include?(parent_id)
         errors.add(:parent, "can't be a child of this page")
       end
     end
   end
+  
 end
