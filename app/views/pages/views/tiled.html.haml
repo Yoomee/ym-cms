@@ -1,0 +1,13 @@
+%h1="#{page.title} (Tiled)"
+
+%p=page.text
+
+.tiled_pages
+  -page.children.each do |page|
+    .child_page
+      =link_to_self(page, :class => "child_page")
+      %p=truncate(page.text, :length => 100)
+
+=options_panel do
+  =link_to("Edit page", edit_page_path)
+  =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")

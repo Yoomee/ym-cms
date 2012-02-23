@@ -6,6 +6,16 @@ module YmCms::Page
     base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id'
     base.validate :parent_is_not_self_or_child
     base.scope :root, base.where(:parent_id => nil)
+    base.extend(ClassMethods)
+    base.image_accessor :image
+  end
+  
+  module ClassMethods
+    
+    def view_names
+      %w{basic tiled list}
+    end
+    
   end
   
   private

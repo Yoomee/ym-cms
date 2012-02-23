@@ -8,6 +8,7 @@ class CreatePages < ActiveRecord::Migration
       t.boolean :published, :default => false
       t.integer :position
       t.string :view_name, :default => "basic"
+      t.string :image_uid
       t.timestamps
     end
     add_index :pages, :parent_id
