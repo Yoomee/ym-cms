@@ -2,12 +2,12 @@ module YmCms::PagesController
   
   def self.included(base)
     base.expose(:page)
-    base.expose(:pages){Page.scoped_all}
+    base.expose(:pages){Page.scoped}
   end
   
   def create
     if page.save
-      redirect_to page
+      redirect_to page.parent || page
     else
       render :action => "new"
     end

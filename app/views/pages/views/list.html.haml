@@ -1,13 +1,23 @@
-%h1="#{page.title} (List)"
-
-%p=page.text
-
-.listed_pages
-  -page.children.each do |page|
-    -link_to(page, :class => "child_page") do
-      =truncate(page.text, :length => 100)
-
-=options_panel do
-  =link_to("Edit page", edit_page_path)
-  =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")
-  =link_to("Add a subpage", new_child_page_path(:parent_id => page.id))
+.span8
+  %h1
+    %span#page_title.mercury-region{:"data-type" => "editable"}
+      =page.title
+    %small List view
+  .row
+    .span8
+      #page_text.mercury-region{:"data-type" => "editable"}
+        =raw(page.text)
+  .row
+    -page.children.each do |page|
+      .news_image.span3.fade_in
+        =link_to(image_for(page, "381x264#"), page)
+      .news_box.span4
+        %h3=link_to_self(page)
+        %p=truncate(strip_tags(page.text), :length => 300)
+  .row
+    .span8
+      =options_panel do
+        =link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
+        =link_to("Edit page details", edit_page_path)
+        =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")
+        =link_to("Add a subpage", new_child_page_path(:parent_id => page.id))

@@ -1,10 +1,12 @@
 =semantic_form_for(page, :multipart => true) do |form|
   =form.inputs do
-    =form.input(:parent, :collection => Page.where(["id != ?", page.id || 0])) unless Page.count.zero?
+    =form.input(:parent, :collection => Page.without([page] + page.children)) unless Page.without([page] + page.children).empty?
     =form.input :title
+    -if !page.new_record? && page.image
+      .control-group
+        =image_for(page, "100x100#")
     =form.input :retained_image, :as => :hidden
     =form.input :image, :as => :file, :label => "Cover image"
-    =form.input :text
     =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize"
     =form.input :published
   =form.buttons do

@@ -1,13 +1,24 @@
-%h1
-  %span#page_title.mercury-region{:"data-type" => "editable"}
-    =page.title
-
-=image_tag(page.image.url) if page.image.present?
-
-#page_text.mercury-region{:"data-type" => "editable"}
-  =raw(page.text)
-
-=options_panel do
-  =link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
-  =link_to("Edit page details", edit_page_path)
-  =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")
+.span8
+  %h1
+    %span#page_title.mercury-region{:"data-type" => "editable"}
+      =page.title
+    %small Basic view
+  .row
+    .span8
+      .gallery_slideshow.fade_in
+        =image_for(page, "770x446>")
+  .row
+    .span8
+      .gallery_description
+        -if page.text.blank? && !viewing_mercury_edit?
+          #page_text
+            =mercury_edit_link("Click here to add some page content", mercury_update_page_path(page))
+        -else
+          #page_text.mercury-region{:"data-type" => "editable"}
+            =raw(page.text)
+    .span8
+      =options_panel do
+        =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link")
+        =#link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
+        =link_to("Edit page details", edit_page_path)
+        =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")
