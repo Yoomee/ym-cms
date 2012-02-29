@@ -16,7 +16,13 @@ module YmCms::PagesController
   def mercury_update
     page.title = params[:content][:page_title][:value]
     page.text = params[:content][:page_text][:value]
-    page.save!
+    page_attrs = {}
+    params[:content].each do |k,v|
+      page_attrs[k.to_s.sub(/^page_/,'')] = v["value"]
+    end
+    puts params.inspect
+    puts page_attrs.inspect
+    page.update_attributes!(page_attrs)
     render text: ""
   end
   

@@ -17,6 +17,7 @@ module YmCms
 
       def copy_migrations
         migration_template "create_pages.rb", "db/migrate/create_pages"
+        migration_template "create_snippets.rb", "db/migrate/create_snippets"
       end
     end
   end
