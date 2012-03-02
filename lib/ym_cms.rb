@@ -5,8 +5,9 @@ end
 
 require 'decent_exposure'
 require 'formtastic'
-require 'ym_cms/models/page'
-require 'ym_cms/models/snippet'
+
+Dir[File.dirname(__FILE__) + '/ym_cms/models/*.rb'].each {|file| require file }
+
 require 'ym_cms/controllers/pages_controller'
 require 'rack/cache'
 require 'dragonfly'
