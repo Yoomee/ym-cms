@@ -11,4 +11,8 @@ module YmCms::MercuryHelper
     controller.params[:mercury_frame]
   end
   
+  def present_or_editing?(string)
+    string.present? || viewing_mercury_edit?
+  end
+  
 end
