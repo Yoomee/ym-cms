@@ -1,0 +1,55 @@
+.formtastic fieldset.slideshow_inputs {
+  padding-top: 0px;
+}
+.formtastic fieldset.slide_inputs {
+  float: left;
+  clear: both;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+.delete_slide_link {
+  text-decoration: none;
+}
+#add_slide_link {
+  margin-top: 20px;
+}
+div.slideshow {
+  width: 100%;
+  overflow: hidden;
+  height: 450px;
+  position: relative;
+}
+div.slideshow .slideshow_inner {
+  position: absolute;
+  width: 2000px;
+}
+div.slideshow .slide {
+  float: left;
+  position: relative;
+  margin: 0 80px 0 0;
+  height: 450px;
+}
+div.slideshow .next_slide {
+  background: rgb(0, 0, 0);
+  opacity: 0.6;
+}
+div.slideshow .next_slide:hover {
+  opacity: 1;
+}
+div.slideshow .slide .slide_inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+div.slideshow .slide img {
+  float: left;
+}
+div.slideshow .slide .slide_caption {
+  position: absolute;
+  top: 40%;
+  right: -25px;
+  font-size: 30px;
+  width: 100px;
+  line-height: 35px;
+}

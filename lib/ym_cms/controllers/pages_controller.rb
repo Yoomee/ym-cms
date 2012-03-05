@@ -13,6 +13,11 @@ module YmCms::PagesController
     end
   end
   
+  def destroy
+    page.destroy
+    redirect_to page.parent || pages_path
+  end
+  
   def mercury_update
     page.title = params[:content][:page_title][:value]
     page.text = params[:content][:page_text][:value]

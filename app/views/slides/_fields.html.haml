@@ -1,0 +1,11 @@
+=slideshow_form.semantic_fields_for(:slides, slide) do |slide_form|
+  =slide_form.inputs(:class => "inputs slide_inputs") do
+    =slide_form.input :position, :as => :string, :input_html => {:class => "span1"}
+    =slide_form.input :caption, :as => :string
+    -if !slide.new_record? && slide.image
+      .control-group
+        =image_for(slide, "100x100#")
+    =slide_form.input :retained_image, :as => :hidden
+    =slide_form.input :image, :as => :file
+    =slide_form.input :_destroy, :as => :hidden, :input_html => {:class => "destroy_input"}
+    =link_to("x Delete slide", "#", :class => "delete_slide_link btn btn-danger")

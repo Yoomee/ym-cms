@@ -19,5 +19,5 @@
       =options_panel do
         =link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
         =link_to("Edit page details", edit_page_path)
-        =link_to("Delete page", page, :method => :destroy, :confirm => "Are you sure?")
+        =link_to("Delete page", page, :method => :delete, :confirm => "Are you sure?")
         =link_to("Add a subpage", new_child_page_path(:parent_id => page.id))
