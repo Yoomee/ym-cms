@@ -4,6 +4,7 @@ module YmCms::Slide
     base.belongs_to :slideshow
     base.image_accessor :image
     base.validates :position, :numericality => true
+    base.validates :image, :presence => true
   end
   
 end
