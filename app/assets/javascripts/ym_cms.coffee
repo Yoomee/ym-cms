@@ -1,3 +1,5 @@
+#=require_tree .
+
 window.YmCms =
   Page:
     Form:
@@ -52,7 +54,6 @@ window.YmCms =
         $($('div.slideshow .slide')[2]).addClass("next_slide")
       $('div.slideshow div.slideshow_inner').animate {left: "-=#{YmCms.Slideshow.slideWidth}"}, 500, ->
         currentSlide = $('div.slideshow .slide:first')
-        console.log($('div.slideshow .slide').length)
         if $('div.slideshow .slide').length <= 2
           currentSlide.addClass("next_slide")
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
