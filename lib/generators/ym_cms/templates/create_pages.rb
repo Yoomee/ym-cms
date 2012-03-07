@@ -3,6 +3,7 @@ class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
       t.integer :parent_id
+      t.string :slug
       t.string :title
       t.text :text
       t.boolean :published, :default => false

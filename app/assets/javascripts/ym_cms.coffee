@@ -1,5 +1,3 @@
-#=require_tree .
-
 window.YmCms =
   Page:
     Form:

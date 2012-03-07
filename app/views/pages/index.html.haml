@@ -1,9 +1,9 @@
 %h1 Pages
--if pages.empty?
+-if Page.count.zero?
   %p There aren't any pages yet.
 -else
   %ul
-    -pages.root.each do |page|
+    -Page.root.each do |page|
       =render("page", :page => page)
 
 =options_panel do
