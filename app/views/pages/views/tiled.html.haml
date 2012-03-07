@@ -22,5 +22,5 @@
       =options_panel do
         =link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
         =link_to("Edit page details", edit_page_path)
-        =link_to("Delete page", page, :method => :delete, :confirm => "Are you sure?")
+        =link_to("Delete page", page, :method => :delete, :confirm => "Are you sure?") unless page.slug.present?
         =link_to("New page", new_page_path)
