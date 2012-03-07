@@ -1,9 +1,3 @@
-=content_for(:head) do
-  :javascript
-    $(document).ready(function() {
-      YmCms.Slideshow.Form.init();
-    });
-
 -new_slide = (slideshow.slides.empty? ? slideshow.slides.build : nil)
 =form.semantic_fields_for(:slideshow, slideshow) do |slideshow_form|
   =slideshow_form.inputs(:class => "inputs slideshow_inputs") do
@@ -12,4 +6,7 @@
     =link_to("+ Add a slide", "#", :id => "add_slide_link", :class => "btn")
   -content_for(:head) do
     :javascript
-      YmCms.Slideshow.slideHtml = '#{escape_javascript(render("slides/fields", :slideshow_form => slideshow_form, :slide => (new_slide || slideshow.slides.build)))}';
+      $(document).ready(function() {
+        YmCms.Slideshow.Form.init();
+      });      
+        YmCms.Slideshow.slideHtml = '#{escape_javascript(render("slides/fields", :slideshow_form => slideshow_form, :slide => (new_slide || slideshow.slides.build)))}';        
