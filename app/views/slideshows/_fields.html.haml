@@ -1,3 +1,9 @@
+=content_for(:head) do
+  :javascript
+    $(document).ready(function() {
+      YmCms.Slideshow.Form.init();
+    });
+
 -new_slide = (slideshow.slides.empty? ? slideshow.slides.build : nil)
 =form.semantic_fields_for(:slideshow, slideshow) do |slideshow_form|
   =slideshow_form.inputs(:class => "inputs slideshow_inputs") do

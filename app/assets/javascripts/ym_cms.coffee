@@ -34,18 +34,22 @@ window.YmCms =
           return (firstMatch + "[" + (YmCms.Slideshow.Form.newSlidesCount + parseInt(secondMatch, 10)) + "]")
         YmCms.Slideshow.Form.newSlidesCount += 1
         return html
-    init: ->
+    init: (options) ->
+      options = {} if options == undefined
       if $('div.slideshow .slide').length > 1
         YmCms.Slideshow.slideWidth = $('div.slideshow .slide').outerWidth(true)
         $('div.slideshow div.slideshow_inner').css('width', YmCms.Slideshow.slideWidth * $('div.slideshow .slide').length)
-        # YmCms.Slideshow.resetInterval()
+        # for auto scrolling
+        YmCms.Slideshow.intervalTime = options.interval
+        YmCms.Slideshow.resetInterval()
         $('div.slideshow .slide').click (event) ->
           event.preventDefault()
           YmCms.Slideshow.nextSlide()
-    resetInterval: ->
-      if YmCms.Slideshow.interval != undefined
-        window.clearInterval(YmCms.Slideshow.interval)
-      YmCms.Slideshow.interval = window.setInterval("YmCms.Slideshow.nextSlide()", 5000)
+    resetInterval: () ->
+      if YmCms.Slideshow.intervalTime != undefined
+        if YmCms.Slideshow.interval != undefined
+          window.clearInterval(YmCms.Slideshow.interval)
+        YmCms.Slideshow.interval = window.setInterval("YmCms.Slideshow.nextSlide()", YmCms.Slideshow.intervalTime)
     nextSlide: () ->
       $('div.slideshow .slide').removeClass("next_slide")
       if $('div.slideshow .slide').length > 2
@@ -56,11 +60,6 @@ window.YmCms =
           currentSlide.addClass("next_slide")
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
         YmCms.Slideshow.resetInterval()
-
-$(document).ready ->
-  YmCms.Page.Form.init()
-  YmCms.Slideshow.init()  
-  YmCms.Slideshow.Form.init()
 
 
 jQuery(window).on "mercury:ready", ->

@@ -1,3 +1,9 @@
+=content_for(:head) do
+  :javascript
+    $(document).ready(function() {
+      YmCms.Slideshow.init();
+    });
+
 .slideshow
   .slideshow_inner
     -slideshow.slides.each_with_index do |slide, index|
