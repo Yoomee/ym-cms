@@ -8,7 +8,7 @@
       #page_text.mercury-region{:"data-type" => "editable"}
         =raw(page.text)
   .row
-    -page.children.each_with_index do |page, index|
+    -page_children.each_with_index do |page, index|
       .gallery_box.fade_in.span4{:class => "fade_#{((index/2)+1).to_word}"}
         =link_to page do
           .gallery_text

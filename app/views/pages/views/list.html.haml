@@ -8,7 +8,7 @@
       #page_text.mercury-region{:"data-type" => "editable"}
         =raw(page.text)
   .row
-    -page.children.each do |page|
+    -page_children.each do |page|
       .news_image.span3.fade_in
         =link_to(image_for(page, "381x264#"), page)
       .news_box.span4
