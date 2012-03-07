@@ -8,14 +8,17 @@
       #page_text.mercury-region{:"data-type" => "editable"}
         =raw(page.text)
   .row
-    -page_children.each do |page|
-      .news_image.span3.fade_in
-        =link_to(image_for(page, "381x264#"), page)
-      .news_box.span4
-        %h3=link_to_self(page)
-        %p=truncate(strip_tags(page.text), :length => 300)
-    .span3.fade_in#new_page_box{:class => "fade_#{(page_children.size/2.0).ceil.to_word}"}
-      =link_to("+ Add a subpage", new_child_page_path(:parent_id => page.id))
+    .span7
+      -page_children.each do |page|
+        .row
+          .news_image.span3.fade_in
+            =link_to(image_for(page, "381x264#"), page)
+          .news_box.span4
+            %h3=link_to_self(page)
+            %p=truncate(strip_tags(page.text), :length => 300)
+      .row
+        .span3.fade_in#new_page_box{:class => "fade_#{(page_children.size/2.0).ceil.to_word}"}
+          =link_to("+ Add a subpage", new_child_page_path(:parent_id => page.id))
   .row
     .span8
       =options_panel do
