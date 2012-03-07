@@ -6,6 +6,7 @@
       =image_for(page, "100x100#")
   =form.input :retained_image, :as => :hidden
   =form.input :image, :as => :file, :label => "Cover image"
-  =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize"
+  =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize", :label => "Layout"
   =form.input :published
-  =form.input :slug
+  -# TODO: show this only to yoomee staff
+  =#form.input :slug

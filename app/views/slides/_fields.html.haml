@@ -1,6 +1,7 @@
 =slideshow_form.semantic_fields_for(:slides, slide) do |slide_form|
   =slide_form.inputs(:class => "inputs slide_inputs") do
-    =slide_form.input :position, :as => :string, :input_html => {:class => "span1"}
+    -# TODO: allow editing of position (maybe drag drop)
+    =#slide_form.input :position, :as => :string, :input_html => {:class => "span1"}
     =slide_form.input :caption, :as => :string
     -if !slide.new_record? && slide.image
       .control-group

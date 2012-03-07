@@ -15,10 +15,12 @@
             %h3=page.title
             %p=truncate(strip_tags(page.text), :length => 300)
           =image_for(page, "370x200#", :class => "gallery_image")
+    .span4.fade_in#new_page_box{:class => "fade_#{(page_children.size/2.0).ceil.to_word}"}
+      =link_to("+ Add a subpage", new_child_page_path(:parent_id => page.id))
   .row
     .span8
       =options_panel do
         =link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
         =link_to("Edit page details", edit_page_path)
         =link_to("Delete page", page, :method => :delete, :confirm => "Are you sure?")
-        =link_to("Add a subpage", new_child_page_path(:parent_id => page.id))
+        =link_to("New page", new_page_path)
