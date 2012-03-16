@@ -10,7 +10,7 @@
   .row
     .span8
       .gallery_description
-        -if page.text.blank? && !viewing_mercury_edit?
+        -if page.text.blank? && !viewing_mercury_edit? && can?(:edit, page)
           #page_text
             =mercury_edit_link("Click here to add some page content", mercury_update_page_path(page))
         -else
@@ -18,8 +18,8 @@
             =raw(page.text)
     .span8
       =options_panel do
-        =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link")
-        =#link_to("Edit page content", "/editor" + request.path, :id => "mercury_edit_link", :data => {:save_url => mercury_update_page_path(page)})
-        =link_to("Edit page details", edit_page_path)
-        =link_to("Delete page", page, :method => :delete, :confirm => "Are you sure?") unless page.slug.present?
-        =link_to("New page", new_page_path)
+        -if can?(:edit, page)
+          =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link")
+        =link_if_allowed("Edit page details", [:edit, page])
+        =link_if_allowed("Delete page", [:destroy, page], :confirm => "Are you sure?") unless page.slug.present?
+        =link_if_allowed("New page", [:new, Page])
