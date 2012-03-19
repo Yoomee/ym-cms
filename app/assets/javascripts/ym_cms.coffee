@@ -45,6 +45,11 @@ window.YmCms =
         $('div.slideshow .slide').click (event) ->
           event.preventDefault()
           YmCms.Slideshow.nextSlide()
+        YmCms.Slideshow.reAlign()     
+        $(window).resize ->
+          YmCms.Slideshow.reAlign()
+    reAlign: () ->
+      $('.slideshow .slide_inner').css('left', ($(window).width() - 940)/2)
     resetInterval: () ->
       if YmCms.Slideshow.intervalTime != undefined
         if YmCms.Slideshow.interval != undefined
@@ -54,12 +59,18 @@ window.YmCms =
       $('div.slideshow .slide').removeClass("next_slide")
       if $('div.slideshow .slide').length > 2
         $($('div.slideshow .slide')[2]).addClass("next_slide")
+      currentHeight = $('.slideshow_container').height()
+      nextSlideHeight = $($('div.slideshow .slide img')[1]).height();
+      if currentHeight < nextSlideHeight
+        $('.slideshow_container').animate {height: "+=#{nextSlideHeight-currentHeight}"}, 500
+      else
+        $('.slideshow_container').animate {height: "-=#{currentHeight-nextSlideHeight}"}, 500
       $('div.slideshow div.slideshow_inner').animate {left: "-=#{YmCms.Slideshow.slideWidth}"}, 500, ->
         currentSlide = $('div.slideshow .slide:first')
         if $('div.slideshow .slide').length <= 2
           currentSlide.addClass("next_slide")
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
-        YmCms.Slideshow.resetInterval()
+        YmCms.Slideshow.resetInterval()        
 
 
 jQuery(window).on "mercury:ready", ->

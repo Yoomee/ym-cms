@@ -4,11 +4,12 @@
       YmCms.Slideshow.init();
     });
 
-.slideshow
-  .slideshow_inner
-    -slideshow.slides.each_with_index do |slide, index|
-      .span9.slide{:class => "#{index == 1 ? 'next_slide' : ''}"}
-        .slide_inner
-          =image_for(slide, "700x450>")
-          %h3.slide_caption
-            =slide.caption
+.slideshow_container.fade_in
+  .slideshow
+    .slideshow_inner
+      -slideshow.slides.each_with_index do |slide, index|
+        .span12.slide{:class => "#{index == 1 ? 'next_slide' : ''}"}
+          .slide_inner
+            =image_for(slide, "940x800>")
+            %h3.slide_caption
+              =slide.caption
