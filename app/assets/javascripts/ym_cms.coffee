@@ -71,6 +71,7 @@ window.YmCms =
         currentSlide = $('div.slideshow .slide:first')
         if $('div.slideshow .slide').length <= 2
           currentSlide.addClass("next_slide")
+        $.scrollTo currentSlide, 500
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
         YmCms.Slideshow.resetInterval()        
 
