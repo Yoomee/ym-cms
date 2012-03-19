@@ -8,8 +8,8 @@
   .slideshow
     .slideshow_inner
       -slideshow.slides.each_with_index do |slide, index|
-        .span12.slide{:class => "#{index == 1 ? 'next_slide' : ''}"}
+        .span11.slide{:class => "#{index == 1 ? 'next_slide' : ''}"}
           .slide_inner
-            =image_for(slide, "940x800>")
+            =image_for(slide, "780x>")
             %h3.slide_caption
               =slide.caption

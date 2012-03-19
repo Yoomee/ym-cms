@@ -28,20 +28,19 @@ div.slideshow {
   margin: 20px 0 50px 0;
   float: left;
   clear: both;
-  height: 800px;  
+  height: 100%; 
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 div.slideshow .slideshow_inner {
   position: absolute;
-  width: 2000px;
 }
 div.slideshow .slide {
   float: left;
   position: relative;
   margin: 0 80px 0 0px;
-  height: 450px;
+  height: 500px;
 }
 div.slideshow .next_slide {
   opacity: 0.6;
@@ -53,6 +52,7 @@ div.slideshow .slide .slide_inner {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 }
 div.slideshow .slide img {
   float: left;
