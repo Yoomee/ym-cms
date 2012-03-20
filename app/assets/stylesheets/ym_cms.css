@@ -1,3 +1,7 @@
 /*
  *= require slideshow
 */
+
+.not_published {
+  color: #B94A48;
+}
