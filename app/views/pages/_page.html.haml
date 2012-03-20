@@ -1,7 +1,8 @@
 %li
-  =link_to(page.title, page)
-  -if page.children.present?
+  =link_to_self(page)
+  %span.not_published="(Not published)" unless page.published?
+  -if page.all_children.present?
     %ul
-      -page.children.each do |child|
+      -page.all_children.each do |child|
         =render("page", :page => child)
         

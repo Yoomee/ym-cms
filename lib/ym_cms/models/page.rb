@@ -4,7 +4,8 @@ module YmCms::Page
     base.validates :title, :presence => true
     base.validates :slug, :uniqueness => true, :allow_blank => true
     base.belongs_to :parent, :class_name => "Page"
-    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id'
+    base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
+    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:published => true}
     base.validate :parent_is_not_self_or_child
     base.scope :root, base.where(:parent_id => nil)
     base.scope :published, base.where(:published => true)
