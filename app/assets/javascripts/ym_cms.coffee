@@ -45,6 +45,8 @@ window.YmCms =
         $('div.slideshow .slide').click (event) ->
           event.preventDefault()
           YmCms.Slideshow.nextSlide()
+        $('div.slideshow .slide img:first').load ->  
+          $('.slideshow_container').css('height', `$(this).height()`)
         YmCms.Slideshow.reAlign()     
         $(window).resize ->
           YmCms.Slideshow.reAlign()

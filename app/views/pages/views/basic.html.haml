@@ -2,14 +2,15 @@
   %h1
     %span#page_title.mercury-region{:"data-type" => "editable"}
       =raw(page.title)
-    %small Basic view
-  .row
-    .span8
-      .gallery_slideshow.fade_in
-        -if page.has_image?
-          =image_for(page, "770x446>")
-        -else
-          .placeholder770x446
+  -if page.image
+    .row
+      .span8
+        .gallery_slideshow.fade_in
+          .gallery_slideshow.fade_in
+            -if page.has_image?
+              =image_for(page, "770x446>")
+            -else
+              .placeholder770x446
   .row
     .span8
       .gallery_description
