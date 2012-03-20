@@ -11,7 +11,8 @@
       -page_children.each do |page|
         .row
           .list_image.span2.fade_in
-            =link_to(image_for(page, "140x100#"), page)
+            -if page.has_image?
+              =link_to(image_for(page, "140x100#"), page)
           .list_box.span6
             %h3.list_title=link_to_self(page)
             =link_to raw('&rarr; Read more'), page, :class => 'list_read_more'

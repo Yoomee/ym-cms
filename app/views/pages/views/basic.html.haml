@@ -6,7 +6,11 @@
     .row
       .span8
         .gallery_slideshow.fade_in
-          =image_for(page, "770x446>")
+          .gallery_slideshow.fade_in
+            -if page.has_image?
+              =image_for(page, "770x446>")
+            -else
+              .placeholder770x446
   .row
     .span8
       .gallery_description

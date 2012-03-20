@@ -20,6 +20,10 @@ module YmCms::Page
     end
     
   end
+
+  def has_image?
+    !image_uid.blank?
+  end
   
   def to_s
     title.html_safe
