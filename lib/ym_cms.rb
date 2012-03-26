@@ -10,5 +10,4 @@ Dir[File.dirname(__FILE__) + '/ym_cms/models/*.rb'].each {|file| require file }
 
 require 'ym_cms/controllers/pages_controller'
 require 'rack/cache'
-require 'dragonfly'
 require 'mercury-rails'
