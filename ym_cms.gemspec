@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency "decent_exposure", "~> 1.0.1"
   s.add_dependency "formtastic", "~> 2.0.2"
   s.add_dependency "rack-cache"
-  s.add_dependency "dragonfly", "~> 0.9.10"
   s.add_dependency "mercury-rails", "~> 0.3.1"
   # s.add_dependency "jquery-rails"
 
