@@ -24,6 +24,6 @@
     .span8
       =options_panel do
         =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link") if can?(:edit, page)
-        =link_if_allowed("Edit page details", [:edit, page])
-        =link_if_allowed("Delete page", [:destroy, page], :confirm => "Are you sure?") unless page.slug.present?
-        =link_if_allowed("New page", [:new, Page])
+        =link_if_can("Edit page details", [:edit, page])
+        =link_if_can("Delete page", [:destroy, page], :confirm => "Are you sure?") unless page.slug.present?
+        =link_if_can("New page", [:new, Page])
