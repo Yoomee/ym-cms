@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Matt Atkins", "Ian Mooney", "Si Wilkins"]
   s.email       = ["matt@yoomee.com", "ian@yoomee.com", "si@yoomee.com"]
   s.homepage    = "http://www.yoomee.com"
-  s.summary     = "TODO: Summary of YmCms."
-  s.description = "TODO: Description of YmCms."
+  s.summary     = "Summary of YmCms."
+  s.description = "Description of YmCms."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
