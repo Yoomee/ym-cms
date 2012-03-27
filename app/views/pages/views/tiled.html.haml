@@ -20,6 +20,7 @@
   .row
     .span8
       =options_panel do
+        =back_link
         -if can?(:edit, page)
           =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link")
         =link_if_can("Edit page details", [:edit, page])
