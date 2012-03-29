@@ -1,3 +1,5 @@
+#= require ym_cms/mercury
+
 window.YmCms =
   Page:
     Form:
