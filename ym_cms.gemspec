@@ -19,11 +19,15 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.1.0"
   s.add_dependency "ym_core"
   s.add_dependency "ym_search"
-  s.add_dependency "decent_exposure", "~> 1.0.1"
-  s.add_dependency "formtastic", "~> 2.0.2"
   s.add_dependency "rack-cache"
   s.add_dependency "mercury-rails", "~> 0.3.1"
-  # s.add_dependency "jquery-rails"
 
-  s.add_development_dependency "sqlite3"
+  # for testing
+  s.add_development_dependency "mysql2"    
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "factory_girl_rails"  
+  s.add_development_dependency 'shoulda-matchers'
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "guard-rspec"
+
 end
