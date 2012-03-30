@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.1.0"
   s.add_dependency "ym_core"
+  s.add_dependency "ym_permalinks"
   s.add_dependency "ym_search"
   s.add_dependency "decent_exposure", "~> 1.0.1"
   s.add_dependency "formtastic", "~> 2.0.2"

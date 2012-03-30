@@ -9,6 +9,7 @@ module YmCms::Page
     base.validate :parent_is_not_self_or_child
     base.scope :root, base.where(:parent_id => nil)
     base.scope :published, base.where(:published => true)
+    base.has_permalinks
     base.extend(ClassMethods)
     base.image_accessor :image
     base.define_index do
