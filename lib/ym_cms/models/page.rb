@@ -1,6 +1,7 @@
 module YmCms::Page
   
   def self.included(base)
+    base.send(:include, YmCore::Model)
     base.validates :title, :presence => true
     base.validates :slug, :uniqueness => true, :allow_blank => true
     base.belongs_to :parent, :class_name => "Page"
