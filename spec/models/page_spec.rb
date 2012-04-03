@@ -37,4 +37,46 @@ describe Page do
     
   end
   
+  describe "that has snippets" do
+    Page.has_snippets(:test_snippet)
+    
+    let(:page) { FactoryGirl.create(:page) }
+    
+    it "has many snippets" do
+      page.should have_many(:snippets)
+    end
+    
+    it "responds to snippet name getter" do
+      page.should respond_to(:test_snippet)
+    end
+    
+    it "responds to snippet name setter" do
+      page.should respond_to("test_snippet=")
+    end
+    
+    it "can set text of snippet" do
+      page1 = FactoryGirl.create(:page, :test_snippet => "New snippet text")
+      page1.test_snippet.should eq("New snippet text")
+    end
+    
+    it "won't create snippet until page is created" do
+      page1 = FactoryGirl.build(:page)
+      page1.test_snippet = "New snippet text"
+      Snippet.where(:item_id => nil).count.should == 0
+    end
+
+    it "can update snippet" do
+      page1 = FactoryGirl.create(:page, :test_snippet => "Old snippet text")
+      page1.test_snippet = "New snippet text"
+      page1.test_snippet.should == "New snippet text"
+    end
+    
+    it "destroy blank snippets" do
+      page1 = FactoryGirl.create(:page, :test_snippet => "Snippet text")
+      page1.test_snippet = ""
+      page1.snippets.where(:name => "test_snippet").count == 0
+    end
+      
+  end
+  
 end
