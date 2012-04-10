@@ -4,8 +4,15 @@ module YmCms
       include Rails::Generators::Migration
 
       source_root File.expand_path("../templates", __FILE__)
-      desc "Copies in slideshow migrations."
+      desc "Installs slideshows."
 
+      def manifest
+        copy_file "models/slide.rb", "app/models/slide.rb"
+        copy_file "models/slideshow.rb", "app/models/slideshow.rb"
+        migration_template "migrations/create_slideshows.rb", "db/migrate/create_slideshows"
+        migration_template "migrations/create_slides.rb", "db/migrate/create_slides"
+      end
+      
       def self.next_migration_number(path)
         unless @prev_migration_nr
           @prev_migration_nr = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
@@ -14,11 +21,7 @@ module YmCms
         end
         @prev_migration_nr.to_s
       end
-
-      def copy_migrations
-        migration_template "create_slideshows.rb", "db/migrate/create_slideshows"
-        migration_template "create_slides.rb", "db/migrate/create_slides"
-      end
+      
     end
   end
 end

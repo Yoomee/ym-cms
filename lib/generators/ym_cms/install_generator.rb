@@ -8,6 +8,7 @@ module YmCms
 
       def manifest
         copy_file "models/page.rb", "app/models/page.rb"
+        copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
         insert_into_file "app/models/ability.rb", "      can :show, Page, :published => true\n", :after => "can :manage, User, :id => user.id\n"
         insert_into_file "app/models/ability.rb", "      can :show, Page, :published => true\n      cannot [:mercury_update], Page\n", :after => "cannot [:create, :update, :destroy], :all\n"
