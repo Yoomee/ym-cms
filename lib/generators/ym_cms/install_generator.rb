@@ -4,8 +4,15 @@ module YmCms
       include Rails::Generators::Migration
       
       source_root File.expand_path("../templates", __FILE__)
-      desc "Copies in default migrations."
+      desc "Installs YmCms."
 
+      def manifest
+        copy_file "models/page.rb", "app/models/page.rb"
+        copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
+        migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
+        migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
+      end
+      
       def self.next_migration_number(path)
         unless @prev_migration_nr
           @prev_migration_nr = Time.now.utc.strftime("%Y%m%d%H%M%S").to_i
@@ -14,11 +21,7 @@ module YmCms
         end
         @prev_migration_nr.to_s
       end
-
-      def copy_migrations
-        migration_template "create_pages.rb", "db/migrate/create_pages"
-        migration_template "create_snippets.rb", "db/migrate/create_snippets"
-      end
+      
     end
   end
 end
