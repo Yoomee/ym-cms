@@ -13,12 +13,6 @@ module YmCms::Page
     base.has_permalinks
     base.extend(ClassMethods)
     base.image_accessor :image
-    base.define_index do
-      where sanitize_sql(["published", true])
-      indexes title, :sortable => true
-      indexes text
-      has parent_id, published, view_name, created_at, updated_at
-    end
   end
   
   module ClassMethods

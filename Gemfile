@@ -14,5 +14,4 @@ gemspec
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem "ym_core", :path => "#{File.dirname(__FILE__)}/../ym_core"
-gem "ym_search", :path => "#{File.dirname(__FILE__)}/../ym_search"
 gem "ym_permalinks", :path => "#{File.dirname(__FILE__)}/../ym_permalinks"
