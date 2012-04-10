@@ -1,9 +1,7 @@
 module YmCms
-  module Generators
-    
+  module Generators    
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      include YmCms::NextMigrationNumber
       
       source_root File.expand_path("../templates", __FILE__)
       desc "Copies in default migrations."
