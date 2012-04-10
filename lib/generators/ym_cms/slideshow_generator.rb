@@ -1,12 +1,10 @@
 module YmCms
   module Generators
-    
-    class InstallGenerator < Rails::Generators::Base
+    class SlideshowsGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      include YmCms::NextMigrationNumber
-      
+
       source_root File.expand_path("../templates", __FILE__)
-      desc "Copies in default migrations."
+      desc "Copies in slideshow migrations."
 
       def self.next_migration_number(path)
         unless @prev_migration_nr
@@ -18,8 +16,8 @@ module YmCms
       end
 
       def copy_migrations
-        migration_template "create_pages.rb", "db/migrate/create_pages"
-        migration_template "create_snippets.rb", "db/migrate/create_snippets"
+        migration_template "create_slideshows.rb", "db/migrate/create_slideshows"
+        migration_template "create_slides.rb", "db/migrate/create_slides"
       end
     end
   end
