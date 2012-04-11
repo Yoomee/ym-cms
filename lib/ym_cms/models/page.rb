@@ -27,8 +27,16 @@ module YmCms::Page
     !image_uid.blank?
   end
   
+  def parents
+    [parent, parent.try(:parents)].flatten.compact
+  end
+  
+  def root
+    parent ? parent.root : self
+  end
+  
   def to_s
-    title.html_safe
+    (short_title.presence || title).html_safe
   end
   
   private
