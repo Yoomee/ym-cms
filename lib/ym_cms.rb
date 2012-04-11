@@ -1,3 +1,4 @@
+require 'mercury-rails'
 require 'ym_cms/engine'
 
 module YmCms
@@ -12,4 +13,3 @@ require 'ym_cms/controllers/pages_controller'
 require 'ym_cms/controllers/slideshows_controller'
 
 require 'rack/cache'
-require 'mercury-rails'

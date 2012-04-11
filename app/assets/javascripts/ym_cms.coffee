@@ -1,5 +1,3 @@
-#= require ym_cms/mercury
-
 window.YmCms =
   Page:
     Form:
@@ -79,13 +77,4 @@ window.YmCms =
           currentSlide.addClass("next_slide")
         $.scrollTo currentSlide, 500
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
-        YmCms.Slideshow.resetInterval()        
-
-
-jQuery(window).on "mercury:ready", ->
-  link = $("#mercury_iframe").contents().find("#mercury_edit_link")
-  Mercury.saveURL = link.data("save-url")
-  link.hide()
-
-jQuery(window).on "mercury:saved", ->
-  window.location = window.location.href.replace(/\/editor\//i, "/")
+        YmCms.Slideshow.resetInterval()
