@@ -8,4 +8,8 @@ module ApplicationHelper
     ""
   end
   
+  def current_user
+    nil
+  end
+  
 end
