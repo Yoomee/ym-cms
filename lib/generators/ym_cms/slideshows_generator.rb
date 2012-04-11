@@ -9,6 +9,7 @@ module YmCms
       def manifest
         copy_file "models/slide.rb", "app/models/slide.rb"
         copy_file "models/slideshow.rb", "app/models/slideshow.rb"
+        copy_file "controllers/slideshows_controller.rb", "app/controllers/slideshows_controller.rb"
         migration_template "migrations/create_slideshows.rb", "db/migrate/create_slideshows"
         migration_template "migrations/create_slides.rb", "db/migrate/create_slides"
       end
