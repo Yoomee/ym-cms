@@ -18,8 +18,10 @@ window.YmCms =
       newSlidesCount: 0,
       init: () ->
         $('fieldset .delete_slide_link').live ('click'), ->
+          event.preventDefault()
           YmCms.Slideshow.Form.deleteSlide(`$(this)`)
         $('#add_slide_link').click =>
+          event.preventDefault()
           YmCms.Slideshow.Form.addSlide()
       addSlide: () ->
         $('#add_slide_link').before(YmCms.Slideshow.Form.formattedSlideHtml())

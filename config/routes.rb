@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   end
   match "pages/:parent_id/subpage", :to => 'pages#new', :as => "new_child_page"
   
+  resources :slideshows, :only => [:edit, :update] 
+  
 end
