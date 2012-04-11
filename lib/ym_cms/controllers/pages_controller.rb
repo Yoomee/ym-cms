@@ -24,8 +24,6 @@ module YmCms::PagesController
     params[:content].each do |k,v|
       page_attrs[k.to_s.sub(/^page_/,'')] = v["value"]
     end
-    puts params.inspect
-    puts page_attrs.inspect
     page.update_attributes!(page_attrs)
     render text: ""
   end
