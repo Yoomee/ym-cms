@@ -1,0 +1,4 @@
+.subnav
+  %ul.subnav-1.unstyled
+    -page.root.children.each do |child_page|
+      =render("pages/subnav_item", :child_page => child_page)

@@ -32,7 +32,11 @@ module YmCms::Page
   end
   
   def root
-    parent ? parent.root : self
+    root? ? self : parent.root
+  end
+  
+  def root?
+    parent.nil?
   end
   
   def to_s

@@ -8,5 +8,6 @@
   =form.input :retained_image, :as => :hidden
   =form.input :image, :as => :file, :label => "Cover image"
   =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize", :label => "Layout"
+  =form.input :permalink_path, :label => "Permalink"
+  =form.input :slug if current_user.try(:yoomee_staff?)  
   =form.input :published
-  =form.input :slug if current_user.try(:yoomee_staff?)
