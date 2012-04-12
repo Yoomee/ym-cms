@@ -13,6 +13,7 @@ module YmCms::Page
     base.has_permalinks
     base.extend(ClassMethods)
     base.image_accessor :image
+    base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
   end
   
   module ClassMethods
