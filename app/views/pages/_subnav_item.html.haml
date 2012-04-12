@@ -3,6 +3,6 @@
 %li.subnav-item{:class => "#{active_item ? 'active' : ''}"}
   =link_to_self(child_page, :class => "subnav-#{depth}-link#{page==child_page ? ' active' : ''}")
   -if active_item && child_page.children.present?
-    %ul.unstyled{:class => "subnav-#{depth + 1}"}
+    %ul{:class => "subnav-#{depth + 1}"}
       -child_page.children.each do |sub_child_page|
         =render("pages/subnav_item", :child_page => sub_child_page)
