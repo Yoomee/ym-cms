@@ -10,9 +10,9 @@ module YmCms
         copy_file "models/page.rb", "app/models/page.rb"
         copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
-        if File.exists?("#{Rails.root}/app/models/ability.rb")
-          insert_into_file "app/models/ability.rb", "      can :show, Page, :published => true\n", :after => "can :manage, User, :id => user.id\n"
-          insert_into_file "app/models/ability.rb", "      can :show, Page, :published => true\n      cannot [:mercury_update], Page\n", :after => "cannot [:create, :update, :destroy], :all\n"
+        if should_add_abilities?('Page')
+          add_ability(:user, "can :show, Page, :published => true")
+          add_ability(:open, ["can :show, Page, :published => true", "cannot [:mercury_update], Page"])
         end
         
         try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
@@ -36,6 +36,15 @@ module YmCms
         rescue Rails::Generators::Error => e
           puts e
         end
+      end
+
+      def should_add_abilities?(model_name)
+        File.exists?("#{Rails.root}/app/models/ability.rb") && !File.open("#{Rails.root}/app/models/ability.rb").read.include?(model_name)
+      end
+
+      def add_ability(role, abilities)
+        ability_string = [*abilities].join("\n      ")
+        insert_into_file "app/models/ability.rb", "\n      #{ability_string}", :after => "#{role} ability"
       end
       
     end
