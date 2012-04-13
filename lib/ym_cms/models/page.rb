@@ -23,10 +23,6 @@ module YmCms::Page
     end
     
   end
-
-  def has_image?
-    !image_uid.blank?
-  end
   
   def parents
     [parent, parent.try(:parents)].flatten.compact
