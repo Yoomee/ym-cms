@@ -11,8 +11,7 @@ module YmCms
         copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
         if should_add_abilities?('Page')
-          add_ability(:user, "can :show, Page, :published => true")
-          add_ability(:open, ["can :show, Page, :published => true", "cannot [:mercury_update], Page"])
+          add_ability(:open, "can :show, Page, :published => true")
         end
         
         try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
@@ -42,9 +41,12 @@ module YmCms
         File.exists?("#{Rails.root}/app/models/ability.rb") && !File.open("#{Rails.root}/app/models/ability.rb").read.include?(model_name)
       end
 
-      def add_ability(role, abilities)
-        ability_string = [*abilities].join("\n      ")
-        insert_into_file "app/models/ability.rb", "\n      #{ability_string}", :after => "#{role} ability"
+      def add_ability(roles, abilities)
+        [*roles].each do |role|
+          tabbed_space = role==:open ? "\n    " : "\n      "
+          ability_string = tabbed_space + [*abilities].join(tabbed_space)
+          insert_into_file "app/models/ability.rb", ability_string, :after => "#{role} ability", :force => true
+        end
       end
       
     end
