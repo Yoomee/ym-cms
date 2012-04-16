@@ -12,7 +12,7 @@ class ActiveRecord::Base
         define_method "#{snippet_name}=" do |val|
           if existing_snippet = snippets.detect{|s| s.name == snippet_name.to_s}
             if val.present?
-              existing_snippet.reload
+              existing_snippet.reload unless new_record?
               existing_snippet.text = val    
             else
               existing_snippet.mark_for_destruction
