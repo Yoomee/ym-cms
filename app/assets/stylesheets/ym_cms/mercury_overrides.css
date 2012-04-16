@@ -1,0 +1,226 @@
+/* @override 
+	http://localhost:3000/assets/mercury_overrides.css
+	http://localhost:3000/assets/mercury_overrides.css?body=1
+*/
+
+div.mercury-button.mercury-notesPanel-button.mercury-button-panel, div.mercury-button.mercury-historyPanel-button.mercury-button-panel, div.mercury-button.mercury-snippetPanel-button.mercury-button-panel, div.mercury-button.mercury-style-button.mercury-button-select, hr.mercury-line-separator, .mercury-indent-group, .mercury-table-group, .mercury-rules-group, .mercury-formatting-group, .mercury-justifyFull-button, .mercury-justifyRight-button, .mercury-justifyCenter-button, .mercury-justifyLeft-button, .mercury-superscript-button, .mercury-subscript-button, .mercury-foreColor-button, .mercury-backColor-button, .mercury-button.mercury-insertCharacter-button, .mercury-button.mercury-preview-button, div.mercury-button-group.mercury-table-group, div.mercury-button.mercury-insertTable-button, .mercury-strikethrough-button, .mercury-overline-button    {
+  display: none;
+}
+
+.mercury-primary-toolbar {
+  height: 0px;
+  overflow: visible;
+  width: 100%;
+  position: relative;
+  border: none;
+}
+.mercury-toolbar-container {
+  border: none;
+}
+.mercury-primary-toolbar .mercury-button  {
+	margin-bottom: 0;
+	min-width: 0;
+	
+}
+.mercury-button em {
+  padding: 0;
+  float: left;
+  display: none;
+}
+
+.mercury-editable-toolbar {
+  height: 50px;
+  background: #fff;
+  padding: 0;
+  border: none;
+  -webkit-box-shadow:2px 2px 10px rgba(0,0,0,0.5), 1px 1px 0px rgba(0,0,0,0.0);
+}
+
+.mercury-toolbar-button-container {
+	position: relative;
+	width: 100%;
+	margin: -10px 0 0 0;
+	border: none;
+}
+
+hr.mercury-line-separator {
+  display: none;
+}
+div.mercury-primary-toolbar .mercury-toolbar-expander {
+  visibility: hidden;
+}
+
+.mercury-primary-toolbar .mercury-separator, .mercury-primary-toolbar .mercury-line-separator{
+  margin: 0;
+}
+
+
+
+
+.mercury-editable-toolbar .mercury-button, .mercury-primary-toolbar .mercury-button {
+  position: absolute;
+  top: 0;
+  height: 30px;
+  width: 30px;
+  background: url(/assets/sprite_mercury.png);
+}
+
+div.mercury-button.mercury-save-button {
+  right: 0px;
+}
+div.mercury-button.mercury-preview-button {
+	right: 60px;
+}
+
+div.mercury-button.mercury-insertCharacter-button {
+	right: 280px;
+}
+div.mercury-button.mercury-insertMedia-button {
+	right: 350px;
+}
+
+.mercury-editable-toolbar .mercury-decoration-group {
+  position: absolute;
+  width: 400px;
+  left: 20px;
+  top: -20px;
+}
+div.mercury-button.mercury-bold-button {
+	left: 0px;
+	padding-left: 10px;
+	background-position: 0px 0px;
+}
+
+div.mercury-button.mercury-bold-button.active {
+  background-position: 0 -40px;
+}
+
+div.mercury-button.mercury-italic-button {
+	left: 40px;
+	background-position: -30px 0px;
+}
+div.mercury-button.mercury-italic-button.active {
+	background-position: -30px -40px;
+}
+div.mercury-button.mercury-underline-button {
+	left: 80px;
+	background-position: -60px 0px;
+}
+div.mercury-button.mercury-underline-button.active {
+	background-position: -60px -40px;
+}
+
+
+.mercury-predefined-group {
+  position: absolute;
+  left: 150px;
+  width: 100px;
+  top: -20px;
+}
+.mercury-editable-toolbar div.mercury-button.mercury-formatblock-button {
+	left: 0px;
+	width: 100px;
+	padding: 0;
+	top: 0;
+	background-position: -100px 0px;
+	
+	border-radius:5px;
+}
+.mercury-editable-toolbar .mercury-button em {
+  text-indent: -9000em;
+  width: 100px;
+  height: 30px;
+  background: none;
+
+}
+div.mercury-dialog, div.mercury-select, div.mercury-palette {
+  margin-top: 20px;
+}
+
+
+div.mercury-button.mercury-insertOrderedList-button {
+	left: 270px;
+	top: -20px;
+	background-position: -240px 0px;
+}
+div.mercury-button.mercury-insertOrderedList-button.active {
+	background-position: -240px -40px;
+}
+div.mercury-button.mercury-insertUnorderedList-button {
+	left: 310px;
+	top: -20px;
+	background-position: -270px 0px;
+}
+div.mercury-button.mercury-insertUnorderedList-button.active {
+	background-position: -270px -40px;
+}
+
+div.mercury-button.mercury-insertLink-button {
+	left: 360px;
+	top: 20px;
+	background-position: -300px 0px;
+}
+div.mercury-button.mercury-insertLink-button.active {
+	background-position: -300px -40px;
+}
+div.mercury-button.mercury-insertMedia-button {
+	left: 395px;
+	top: 20px;
+	background-position: -330px 0px;
+}
+div.mercury-button.mercury-insertMedia-button.active {
+	left: 395px;
+	top: 20px;
+	background-position: -330px -40px;
+}
+div.mercury-button.mercury-htmlEditor-button {
+	left: 435px;
+	top: -20px;
+	padding: 0 0 0 10px;
+	background-position: -360px 0px;
+
+}
+div.mercury-button.mercury-htmlEditor-button.active {
+  background-position: -360px -40px;
+}
+div.mercury-button.mercury-undo-button {
+	right: 200px;
+	top: 20px;
+	background-position: -480px 0px;
+}
+div.mercury-button.mercury-redo-button {
+	right:170px;
+	top: 20px;
+	background-position: -510px 0px;
+}
+div.mercury-button.mercury-save-button em {
+  display: block;
+  text-indent: 0;
+  background:#41aacd url(/assets/save_btn_bg.png) bottom repeat-x;
+  padding:8px 9px;
+  color: #fff;
+  z-index: 100;
+  text-transform: uppercase;
+  width: 80px;
+ font-size: 15px;
+ line-height: 17px;
+ font-weight: bold;
+  text-align: center;
+  text-shadow: none;
+  text-shadow: 0px 1px 0 rgba(0,0,0,0.1);
+  
+  border-radius:4px;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  text-rendering: optimizelegibility;
+  letter-spacing: 0.06em;
+  
+  box-shadow:inset 1px 1px 1px rgba(0,0,0,0.1), 0px 2px 1px rgba(0,0,0,0.1)
+}
+div.mercury-button.mercury-save-button {
+  width: 100px;
+  top: 19px;
+  right: 30px;
+  background: none;
+}
+
