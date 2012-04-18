@@ -1,5 +1,5 @@
 =form.inputs do
-  =form.input(:parent, :collection => Page.without([page] + page.children)) unless Page.without([page] + page.children).empty?
+  =parent_page_select(form)
   =form.input :title
   =form.input :short_title
   -if !page.new_record? && page.image
