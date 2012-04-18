@@ -62,7 +62,7 @@ div.mercury-primary-toolbar .mercury-toolbar-expander {
   top: 0;
   height: 30px;
   width: 30px;
-  background: url(/assets/sprite_mercury.png);
+  background: url(/assets/mercury_sprite.png);
 }
 
 div.mercury-button.mercury-save-button {
@@ -196,7 +196,7 @@ div.mercury-button.mercury-redo-button {
 div.mercury-button.mercury-save-button em {
   display: block;
   text-indent: 0;
-  background:#41aacd url(/assets/save_btn_bg.png) bottom repeat-x;
+  background:#41aacd url(/assets/mercury_save_btn_bg.png) bottom repeat-x;
   padding:8px 9px;
   color: #fff;
   z-index: 100;
