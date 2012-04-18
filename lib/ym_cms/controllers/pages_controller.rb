@@ -8,7 +8,8 @@ module YmCms::PagesController
   
   def create
     if page.save
-      redirect_to page.parent || page
+      flash_notice(page, :create)
+      redirect_to page
     else
       render :action => "new"
     end
@@ -16,6 +17,7 @@ module YmCms::PagesController
   
   def destroy
     page.destroy
+    flash_notice(page, :destroy)
     redirect_to page.parent || pages_path
   end
   
@@ -38,6 +40,7 @@ module YmCms::PagesController
   
   def update
     if page.save
+      flash_notice(page, :update)
       redirect_to page
     else
       render :action => "edit"
