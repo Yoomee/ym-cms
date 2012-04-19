@@ -16,6 +16,7 @@ module YmCms
         
         try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
         try_migration_template "migrations/add_short_title_to_pages.rb", "db/migrate/add_short_title_to_pages"
+        try_migration_template "migrations/add_user_id_to_pages.rb", "db/migrate/add_user_id_to_pages"
         try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
       end
       
