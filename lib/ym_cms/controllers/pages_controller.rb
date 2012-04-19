@@ -7,8 +7,10 @@ module YmCms::PagesController
   end
   
   def create
+    set_user
     if page.save
-      redirect_to page.parent || page
+      flash_notice(page)
+      redirect_to page
     else
       render :action => "new"
     end
@@ -16,6 +18,7 @@ module YmCms::PagesController
   
   def destroy
     page.destroy
+    flash_notice(page)
     redirect_to page.parent || pages_path
   end
   
@@ -30,6 +33,7 @@ module YmCms::PagesController
   
   def new
     page.parent_id = params[:parent_id]
+    set_user
   end
   
   def show
@@ -38,10 +42,16 @@ module YmCms::PagesController
   
   def update
     if page.save
+      flash_notice(page)
       redirect_to page
     else
       render :action => "edit"
     end
+  end
+  
+  private
+  def set_user
+    page.user = current_user if page.user.nil? && defined?(current_user)
   end
   
 end

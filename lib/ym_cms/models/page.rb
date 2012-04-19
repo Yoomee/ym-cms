@@ -9,6 +9,7 @@ module YmCms::Page
     base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
     base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:published => true}
     base.validate :parent_is_not_self_or_child
+    base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image")    
     base.scope :root, base.where(:parent_id => nil)
     base.scope :published, base.where(:published => true)
