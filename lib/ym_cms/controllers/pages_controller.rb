@@ -3,6 +3,7 @@ module YmCms::PagesController
   def self.included(base)
     base.expose(:page)
     base.expose(:page_children) { page ? page.children : [] }
+    base.expose(:pages_for_ordering) { params[:id] ? page_children : Page.root}
     base.send(:include, YmPermalinks::PermalinkableController)
   end
   
