@@ -21,6 +21,9 @@ window.YmCms =
         $('#add_slide_link').click =>
           event.preventDefault()
           YmCms.Slideshow.Form.addSlide()
+        YmCms.Slideshow.Form.updateMediaType()
+        $('.media_type_choice').live 'click', ->
+          YmCms.Slideshow.Form.updateMediaType()
       addSlide: () ->
         $('#add_slide_link').before(YmCms.Slideshow.Form.formattedSlideHtml())
       deleteSlide: (linkElem) ->
@@ -36,6 +39,14 @@ window.YmCms =
           return (firstMatch + "[" + (YmCms.Slideshow.Form.newSlidesCount + parseInt(secondMatch, 10)) + "]")
         YmCms.Slideshow.Form.newSlidesCount += 1
         return html
+      updateMediaType: () ->
+        $('.image_field, .video_field').hide()
+        checkedSlideInputs = $('.media_type_choice:checked')#.closest '.slide_inputs'
+        checkedSlideInputs.each (idx, element) =>
+          element = $(element)
+          checkedVal = element.val()
+          slideInputs = element.closest '.slide_inputs'
+          $(slideInputs.find(".#{checkedVal}_field")).show()
     init: (options) ->
       options = {} if options == undefined
       if $('div.slideshow .slide').length > 1

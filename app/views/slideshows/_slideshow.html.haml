@@ -10,6 +10,10 @@
       -slideshow.slides.each_with_index do |slide, index|
         .span11.slide{:class => "#{index == 1 ? 'next_slide' : ''}"}
           .slide_inner
-            =image_for(slide, "780x>")
+            -if slideshow_item.has_video?
+              %iframe{:width => 520, :height => 320, :src => slideshow_item.video_embed_url, :frameborder => 0, :allowfullscreen => true}
+            -else
+              =image_for(slideshow_item, "520x320#")  
+
             %h3.slide_caption
               =slide.caption
