@@ -2,7 +2,7 @@
   =slide_form.inputs(:class => "inputs slide_inputs") do
     -# TODO: allow editing of position (maybe drag drop)
     =#slide_form.input :position, :as => :string, :input_html => {:class => "span1"}
-    =slide_form.input :caption, :as => :string
+    =slide_form.input :caption, :as => :text, :input_html => {:rows => 6, :class => 'span6'}
     -if !slide.new_record? && slide.image
       .control-group
         =image_for(slide, "100x100#")
