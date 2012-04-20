@@ -10,6 +10,10 @@ window.YmCms =
           $('.tabbable .nav li').has("a[href='##{$(option).val()}']").hide()
         view_name = $('#page_view_name').val()
         $('.tabbable .nav li').has("a[href='##{view_name}']").show()
+      saveOrder: ->
+        $('#orderable_pages li').each (idx, el) =>
+          $('#sortable_id_' + idx).val $(el).data('sortable-id')
+      
   Slideshow:
     Form:
       slideHtml: "",

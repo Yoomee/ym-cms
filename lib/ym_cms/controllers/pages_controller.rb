@@ -28,12 +28,15 @@ module YmCms::PagesController
       page_attrs[k.to_s.sub(/^page_/,'')] = v["value"]
     end
     page.update_attributes!(page_attrs)
-    render text: ""
+    render text =>  ""
   end
   
   def new
     page.parent_id = params[:parent_id]
     set_user
+  end
+  
+  def order
   end
   
   def show
@@ -47,6 +50,14 @@ module YmCms::PagesController
     else
       render :action => "edit"
     end
+  end
+  
+  def update_order
+    params[:pages].each do |index, sortable_hash|
+      puts "Updating page #{Page.find(sortable_hash[:sortable_id])} to position #{index}"
+      Page.find(sortable_hash["sortable_id"]).update_attribute(:position, index)
+    end
+    redirect_to params[:id] ? page_path(params[:id]) : pages_path
   end
   
   private
