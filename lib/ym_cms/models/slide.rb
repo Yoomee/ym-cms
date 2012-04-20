@@ -12,7 +12,7 @@ module YmCms::Slide
   end
   
   def has_image?
-    media_type == 'video'
+    media_type == 'image'
   end
   
   def has_video?
