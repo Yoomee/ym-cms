@@ -10,8 +10,9 @@ module YmCms
         copy_file "models/slide.rb", "app/models/slide.rb"
         copy_file "models/slideshow.rb", "app/models/slideshow.rb"
         copy_file "controllers/slideshows_controller.rb", "app/controllers/slideshows_controller.rb"
-        migration_template "migrations/create_slideshows.rb", "db/migrate/create_slideshows"
-        migration_template "migrations/create_slides.rb", "db/migrate/create_slides"
+        try_migration_template "migrations/create_slideshows.rb", "db/migrate/create_slideshows"
+        try_migration_template "migrations/create_slides.rb", "db/migrate/create_slides"
+        try_migration_template "migrations/add_video_info_to_slides.rb", "db/migrate/add_video_info_to_slides"        
       end
       
       def self.next_migration_number(path)
@@ -22,7 +23,16 @@ module YmCms
         end
         @prev_migration_nr.to_s
       end
-      
+
+      private
+      def try_migration_template(source, destination)
+        begin
+          migration_template source, destination
+        rescue Rails::Generators::Error => e
+          puts e
+        end
+      end      
+
     end
   end
 end

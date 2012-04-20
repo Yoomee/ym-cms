@@ -1,4 +1,4 @@
-require File.expand_path('../../../lib/ym_gem_loader')
+require File.expand_path('../../../lib/ym_gem_loader', File.dirname(__FILE__))
 
 source "http://rubygems.org"
 
