@@ -14,6 +14,6 @@
     %label{:class => 'control-label'}
     .controls
       %label{:class => 'checkbox', :for => 'page_published_at'}
-        =form.check_box :published_at, {:checked => (page.published_at && page.published_at <= Time.now)}, Time.now, nil
+        =publish_check_box(form, page)
         Published
   =form.input :published_at_s, :as => :string, :label => 'or publish at', :input_html => {:class => 'datetime'}
