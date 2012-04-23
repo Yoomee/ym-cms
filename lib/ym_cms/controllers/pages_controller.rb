@@ -29,7 +29,7 @@ module YmCms::PagesController
       page_attrs[k.to_s.sub(/^page_/,'')] = v["value"]
     end
     page.update_attributes!(page_attrs)
-    render text =>  ""
+    render :text =>  ""
   end
   
   def new
