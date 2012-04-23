@@ -7,12 +7,13 @@ module YmCms::Page
     base.validates :slug, :uniqueness => true, :allow_blank => true
     base.belongs_to :parent, :class_name => "Page"
     base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
-    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:published => true}
+    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => proc{["published_at <= ?", Time.now]}
     base.validate :parent_is_not_self_or_child
     base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image")    
     base.scope :root, base.where(:parent_id => nil)
-    base.scope :published, base.where(:published => true)
+    base.scope :published, lambda {base.where(["published_at <= ?", Time.now])}
+    base.scope :latest, base.order("published_at DESC")
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
