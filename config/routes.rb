@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   match "pages/:id/order", :to => "pages#update_order", :via => :post 
   match "pages/:parent_id/subpage", :to => 'pages#new', :as => "new_child_page"
   
-  resources :slideshows, :only => [:edit, :update] 
+  resources :slideshows, :only => [:edit, :update] do
+    member do
+      get :order
+    end
+  end
   
 end

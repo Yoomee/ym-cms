@@ -14,10 +14,10 @@ module YmCms
           add_ability(:open, "can :show, Page, :published => true")
         end
         
-        try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
-        try_migration_template "migrations/add_short_title_to_pages.rb", "db/migrate/add_short_title_to_pages"
-        try_migration_template "migrations/add_user_id_to_pages.rb", "db/migrate/add_user_id_to_pages"
-        try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
+        Dir[File.dirname(__FILE__) + '/templates/migrations/*.rb'].each do |file_path|
+          file_name = file_path.split("/").last
+          try_migration_template "migrations/#{file_name}", "db/migrate/#{file_name.sub(/^\d+\_/, '')}"
+        end
       end
       
       def self.next_migration_number(path)

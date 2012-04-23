@@ -16,6 +16,8 @@ module YmCms::Page
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
+    base.send(:attr_writer, :published_at_s)
+    base.before_validation :update_published_at
   end
   
   module ClassMethods
@@ -29,6 +31,16 @@ module YmCms::Page
   def parents
     [parent, parent.try(:parents)].flatten.compact
   end
+  
+  def published?
+    published_at && published_at <= Time.now
+  end
+  alias_method :published, :published?
+  
+  def published_at_s
+    published_at.try(:strftime, "%d/%m/%Y %H:%M") || ''
+  end
+  
   
   def root
     root? ? self : parent.root
@@ -51,6 +63,10 @@ module YmCms::Page
         errors.add(:parent, "can't be a child of this page")
       end
     end
+  end
+  
+  def update_published_at
+    self.published_at ||= DateTime.strptime(@published_at_s, "%d/%m/%Y %H:%M") unless @published_at_s.blank?
   end
   
 end
