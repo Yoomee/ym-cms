@@ -18,7 +18,7 @@ module YmCms
         try_migration_template "migrations/add_short_title_to_pages.rb", "db/migrate/add_short_title_to_pages"
         try_migration_template "migrations/add_user_id_to_pages.rb", "db/migrate/add_user_id_to_pages"
         try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
-        try_migration_template "migrations/add_published_at_to_pages", "db/migrate/add_published_at_to_pages"
+        try_migration_template "migrations/add_published_at_to_pages.rb", "db/migrate/add_published_at_to_pages"
       end
       
       def self.next_migration_number(path)
