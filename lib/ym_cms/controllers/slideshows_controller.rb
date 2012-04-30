@@ -15,9 +15,7 @@ module YmCms::SlideshowsController
   
   private
   def unnest_params
-    puts params.inspect
     params[:slideshow] = params[:slideshow][:slideshow]
-    puts params.inspect
   end
   
 end
