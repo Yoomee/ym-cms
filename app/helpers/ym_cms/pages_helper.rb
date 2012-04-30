@@ -5,7 +5,7 @@ module YmCms::PagesHelper
     current_page = form.object
     return "" if Page.without([current_page] + current_page.children).empty?
     out = form.label(:parent_id, options[:label])
-    out << content_tag(:div, form.select(:parent_id, parent_page_option_tags(current_page)), :class => 'controls')
+    out << content_tag(:div, form.select(:parent_id, content_tag(:option) + parent_page_option_tags(current_page)), :class => 'controls')
     content_tag(:div, out, :class => 'select control-group optional', :id => 'page_parent_input')
   end
   
@@ -20,7 +20,7 @@ module YmCms::PagesHelper
         ret << parent_page_option_tags(current_page, :pages => parent_page.children, :indent => options[:indent] + 1)
       end
       memo + ret
-    end
+    end.html_safe
   end
   
   def publish_check_box(form, page)

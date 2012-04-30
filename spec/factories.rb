@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :page do |f|  
     f.title "Page title"
     f.text "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi."  
-    f.published true
+    f.published_at Time.now
   end
   
   factory :slideshow do |f|

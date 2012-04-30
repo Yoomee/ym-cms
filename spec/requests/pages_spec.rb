@@ -2,11 +2,27 @@ require 'spec_helper'
 
 describe "Pages" do
   
-  describe "GET /pages" do
-    it "should list page titles" do
-      cms_page = FactoryGirl.create(:page)
-      visit pages_path
-      page.should have_content(cms_page.title)
+  describe "GET /pages#index" do    
+    before do
+      FactoryGirl.create(:page, :title => "Published page")
+      FactoryGirl.create(:page, :title => "Not published page", :published_at => 1.day.from_now)
+    end
+    describe "when current_user is admin" do
+      before do
+        stub(:can? => true)
+      end
+      it "should show all pages" do
+        visit pages_path
+        page.should have_content("Published page")
+        page.should have_content("Unpublished page")
+      end
+    end
+    describe "when current_user is not admin" do
+      it "should only show published pages" do
+        visit pages_path
+        page.should have_content("Published page")
+        page.should_not have_content("Unpublished page")
+      end
     end
   end
 
@@ -31,8 +47,8 @@ describe "Pages" do
         response.should render_template("views/tiled")
       end
       it "should only display published children" do        
-        FactoryGirl.create(:page, :title => "An unpublished page", :published => false, :parent => cms_page)
-        FactoryGirl.create(:page, :title => "A published page", :published => true, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "An unpublished page", :published_at => 1.day.from_now, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "A published page", :parent => cms_page)
         visit page_path(cms_page)        
         page.should_not have_content("An unpublished page")
         page.should have_content("A published page")        
@@ -47,8 +63,8 @@ describe "Pages" do
         response.should render_template("views/list")
       end
       it "should only display published children" do        
-        FactoryGirl.create(:page, :title => "An unpublished page", :published => false, :parent => cms_page)
-        FactoryGirl.create(:page, :title => "A published page", :published => true, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "An unpublished page", :published_at => 1.day.from_now, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "A published page", :parent => cms_page)
         visit page_path(cms_page)        
         page.should_not have_content("An unpublished page")
         page.should have_content("A published page") 
@@ -76,14 +92,14 @@ describe "Pages" do
       visit new_page_path
       fill_in 'Title', :with => "New page title"
       click_button 'Save'
-      current_url.should eq(page_url(Page.last))
+      current_path.should eq(page_path(Page.last))
       page.should have_content("New page title")
     end
     it "should render pages#edit if invalid" do
       visit new_page_path
       fill_in 'Title', :with => ""
       click_button 'Save'
-      current_url.should eq(pages_url)
+      current_path.should eq(pages_path)
       page.has_css? "form#new_page"
     end  
   end
@@ -94,7 +110,7 @@ describe "Pages" do
       visit edit_page_path(cms_page)
       fill_in 'Title', :with => "Updated page title"
       click_button 'Save'
-      current_url.should eq(page_url(cms_page))
+      current_path.should eq(page_path(cms_page.reload))
       page.should have_content("Updated page title")
     end
     it "should render pages#edit if invalid" do
@@ -102,7 +118,7 @@ describe "Pages" do
       visit edit_page_path(cms_page)
       fill_in 'Title', :with => ""
       click_button 'Save'
-      current_url.should eq(page_url(cms_page))
+      current_path.should eq(page_path(cms_page))
       page.has_css? "form#edit_page_#{cms_page.id}"
     end   
   end
