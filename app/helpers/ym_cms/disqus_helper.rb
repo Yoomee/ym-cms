@@ -8,12 +8,12 @@ module YmCms::DisqusHelper
     var disqus_developer = #{(Rails.env == 'development' || http_basic_authenticated?) ? 1 : 0};
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src1 = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     JAVASCRIPT
     out << javascript_tag(disqus_js)
-    out << link_to("blog comments powered by <span class='logo-disqus'>Disqus</span>", "http://disqus.com")    
+    out << link_to("blog comments powered by <span class='logo-disqus'>Disqus</span>".html_safe, "http://disqus.com")    
   end
   
   def disqus_counts
@@ -47,7 +47,7 @@ module YmCms::DisqusHelper
 
   private
   def http_basic_authenticated?
-    !Settings.http_basic_username.blank?
+    Rails.env.production? && !Settings.http_basic_username.blank?
   end
 
 end
