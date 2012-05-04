@@ -14,6 +14,7 @@ module YmCms::Page
     base.scope :root, base.where(:parent_id => nil)
     base.scope :published, lambda {base.where(["published_at <= ?", Time.now])}
     base.scope :latest, base.order("published_at DESC")
+    base.scope :for_month_and_year, lambda {|month, year| {:conditions => ["MONTH(published_at)=:month AND YEAR(published_at)=:year", {:month => month, :year => year}]}}
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
