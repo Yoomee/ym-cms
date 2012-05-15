@@ -75,9 +75,9 @@ window.YmCms =
           YmCms.Slideshow.nextSlide()
         $('div.slideshow .slide img:first').load ->  
           $('.slideshow_container').css('height', `$(this).height()`)
-        YmCms.Slideshow.reAlign()     
-        $(window).resize ->
-          YmCms.Slideshow.reAlign()
+      $(window).resize ->
+        YmCms.Slideshow.reAlign()
+      YmCms.Slideshow.reAlign()
     reAlign: () ->
       leftPos = ($(window).width() - 940)/2
       leftPos = 0 if leftPos < 0
