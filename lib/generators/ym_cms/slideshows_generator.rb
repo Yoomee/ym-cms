@@ -13,6 +13,7 @@ module YmCms
         try_migration_template "migrations/create_slideshows.rb", "db/migrate/create_slideshows"
         try_migration_template "migrations/create_slides.rb", "db/migrate/create_slides"
         try_migration_template "migrations/add_video_info_to_slides.rb", "db/migrate/add_video_info_to_slides"        
+        try_migration_template "migrations/add_slug_to_slideshows.rb", "db/migrate/add_slug_to_slideshows"
       end
       
       def self.next_migration_number(path)
