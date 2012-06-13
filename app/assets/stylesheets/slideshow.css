@@ -56,11 +56,11 @@ div.slideshow .slide .slide_inner {
 div.slideshow .slide img {
   float: left;
 }
-div.slideshow .slide .slide_caption {
-  position: absolute;
-  top: 40%;
-  right: -25px;
-  font-size: 30px;
-  width: 100px;
-  line-height: 35px;
+.slideshow .slide-title {
+  height: 40px;
+}
+.slideshow .slide-caption {
+  float: left;
+  clear: both;
+  margin-top: 5px;
 }

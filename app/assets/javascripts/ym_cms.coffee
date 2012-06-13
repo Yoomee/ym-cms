@@ -74,7 +74,7 @@ window.YmCms =
           event.preventDefault()
           YmCms.Slideshow.nextSlide()
         $('div.slideshow .slide img:first').load ->  
-          $('.slideshow_container').css('height', `$(this).height()`)
+          $('.slideshow_container').css('height', `$(this).parent().height()`)
       $(window).resize ->
         YmCms.Slideshow.reAlign()
       YmCms.Slideshow.reAlign()
@@ -92,7 +92,7 @@ window.YmCms =
       if $('div.slideshow .slide').length > 2
         $($('div.slideshow .slide')[2]).addClass("next_slide")
       currentHeight = $('.slideshow_container').height()
-      nextSlideHeight = $($('div.slideshow .slide img')[1]).height();
+      nextSlideHeight = $($('div.slideshow .slide .slide_inner')[1]).height();
       if currentHeight < nextSlideHeight
         $('.slideshow_container').animate {height: "+=#{nextSlideHeight-currentHeight}"}, 500
       else
@@ -101,6 +101,6 @@ window.YmCms =
         currentSlide = $('div.slideshow .slide:first')
         if $('div.slideshow .slide').length <= 2
           currentSlide.addClass("next_slide")
-        $.scrollTo currentSlide, 500
+        $.scrollTo(currentSlide, 500, {offset: -10})
         $('div.slideshow div.slideshow_inner').append(currentSlide.detach()).css('left', 0)
         YmCms.Slideshow.resetInterval()
