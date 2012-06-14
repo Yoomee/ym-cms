@@ -15,7 +15,7 @@
             %p=truncate(strip_tags(page.text), :length => 300)
           =image_for(page, "370x200#", :class => "gallery_image")
     -if can?(:new, Page)
-      .span4.fade_in#new_page_box{:class => "fade_#{(page_children.size/2.0).ceil.to_word}"}
+      .span4.fade_in.new-page-box{:class => "fade_#{(page_children.size/2.0).ceil.to_word}"}
         =link_to("+ Add a subpage", new_child_page_path(:parent_id => page.id))
   .row
     .span8
