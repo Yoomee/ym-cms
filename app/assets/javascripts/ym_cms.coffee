@@ -64,17 +64,19 @@ window.YmCms =
           $(slideInputs.find(".#{checkedVal}_field")).show()
     init: (options) ->
       options = {} if options == undefined
-      if $('div.slideshow .slide').length > 1
+      slideCount = $('div.slideshow .slide').length
+      if slideCount > 0
         YmCms.Slideshow.slideWidth = $('div.slideshow .slide').outerWidth(true)
         $('div.slideshow div.slideshow_inner').css('width', YmCms.Slideshow.slideWidth * $('div.slideshow .slide').length)
-        # for auto scrolling
-        YmCms.Slideshow.intervalTime = options.interval
-        YmCms.Slideshow.resetInterval()
-        $('div.slideshow .slide').click (event) ->
-          event.preventDefault()
-          YmCms.Slideshow.nextSlide()
         $('div.slideshow .slide img:first').load ->  
           $('.slideshow_container').css('height', `$(this).parent().height()`)
+        if slideCount > 1
+          # for auto scrolling
+          YmCms.Slideshow.intervalTime = options.interval
+          YmCms.Slideshow.resetInterval()
+          $('div.slideshow .slide').click (event) ->
+            event.preventDefault()
+            YmCms.Slideshow.nextSlide()
       $(window).resize ->
         YmCms.Slideshow.reAlign()
       YmCms.Slideshow.reAlign()
