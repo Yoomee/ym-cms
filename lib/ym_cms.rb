@@ -1,4 +1,8 @@
 require 'mercury-rails'
+require 'ym_core'
+require 'ym_permalinks'
+require 'ym_videos'
+
 require 'ym_cms/engine'
 
 module YmCms
