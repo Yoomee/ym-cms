@@ -2,6 +2,7 @@
   =parent_page_select(form)
   =form.input :title
   =form.input :short_title
+  =form.input :text, :as => :redactor
   -if !page.new_record? && page.image
     .control-group
       =image_for(page, "100x100#")

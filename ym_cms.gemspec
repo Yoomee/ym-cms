@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.0"
-  s.add_dependency "ym_core", "~> 0.1"
+  s.add_dependency "ym_core", "~> 0.1.8"
   s.add_dependency "ym_permalinks", "~> 0.1"
   s.add_dependency "ym_videos", "~> 0.1"
   s.add_dependency "rack-cache"

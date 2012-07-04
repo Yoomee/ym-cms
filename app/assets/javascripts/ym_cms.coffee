@@ -1,7 +1,10 @@
+#= require redactor
+
 window.YmCms =
   Page:
     Form:
       init: () ->
+        Redactor.init()
         YmCms.Page.Form.showViewTab()
         $('#page_view_name').change =>
           YmCms.Page.Form.showViewTab()
