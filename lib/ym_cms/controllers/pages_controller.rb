@@ -23,15 +23,6 @@ module YmCms::PagesController
     redirect_to page.parent || pages_path
   end
   
-  def mercury_update
-    page_attrs = {}
-    params[:content].each do |k,v|
-      page_attrs[k.to_s.sub(/^page_/,'')] = v["value"]
-    end
-    page.update_attributes!(page_attrs)
-    render :text =>  ""
-  end
-  
   def new
     page.parent_id = params[:parent_id]
     set_user

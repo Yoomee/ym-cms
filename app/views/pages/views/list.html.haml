@@ -1,11 +1,8 @@
 .span8
-  %h1
-    %span#page_title.mercury-region{:"data-type" => "editable"}
-      =raw(page.title)
+  %h1=page.title
   .row
     .span8
-      #page_text.mercury-region{:"data-type" => "editable"}
-        =raw(page.text)
+      =raw(page.text)
   .row
     .span8
       -page_children.each do |page|
@@ -24,8 +21,7 @@
     .span8
       =options_panel do
         =back_link
-        =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link") if can?(:edit, page)
-        =link_if_can("Edit page details", [:edit, page])
+        =link_if_can("Edit page", [:edit, page])
         =link_if_can("Delete page", [:destroy, page], :confirm => "Are you sure?") unless page.slug.present?
         =link_if_can("New page", [:new, Page])
         =link_if_can("Set order", [:order, Page])

@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency "ym_permalinks", "~> 0.1"
   s.add_dependency "ym_videos", "~> 0.1"
   s.add_dependency "rack-cache"
-  s.add_dependency "mercury-rails", "~> 0.3.1"
 
   # for testing
   s.add_development_dependency "mysql2"    

@@ -1,11 +1,8 @@
 .span8
-  %h1
-    %span#page_title.mercury-region{:"data-type" => "editable"}
-      =raw(page.title)
+  %h1=page.title
   .row
     .span8
-      #page_text.mercury-region{:"data-type" => "editable"}
-        =raw(page.text)
+      =raw(page.text)
   .row
     -page_children.each_with_index do |page, index|
       .gallery_box.fade_in.span4{:class => "fade_#{((index/2)+1).to_word}"}
@@ -21,9 +18,7 @@
     .span8
       =options_panel do
         =back_link
-        -if can?(:edit, page)
-          =mercury_edit_link("Edit page content", mercury_update_page_path(page), :id => "mercury_edit_link")
-        =link_if_can("Edit page details", [:edit, page])
+        =link_if_can("Edit page", [:edit, page])
         =link_if_can("Delete page", [:destroy, page], :confirm => "Are you sure?") unless page.slug.present?
         =link_if_can("New page", new_child_page_path(:parent_id => page.id)) if can?(:new,Page)
         =link_if_can("Set order", [:order, page])

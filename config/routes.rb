@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   
-  Mercury::Engine.routes
-    
   resources :pages do
     member do 
-      post :mercury_update
       get :order
     end
     collection do

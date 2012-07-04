@@ -1,4 +1,3 @@
-require 'mercury-rails'
 require 'ym_core'
 require 'ym_permalinks'
 require 'ym_videos'
