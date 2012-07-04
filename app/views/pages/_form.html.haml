@@ -4,7 +4,7 @@
       YmCms.Page.Form.init();  
     });
       
-=semantic_form_for(page, :multipart => true) do |form|
+=semantic_form_for(@page, :multipart => true) do |form|
   =tabs('details', :form => form)
 
   =form.buttons do

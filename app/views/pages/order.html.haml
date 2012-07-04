@@ -10,19 +10,19 @@
       });
     });
 
--title page.nil? ? "Root pages" : page
+-title @page ? "Root pages" : @page
 
 %p.help
   Click and drag using the icons on the left. Once you are happy with the order, click "Save order" at the bottom.
 
 %ul#orderable_pages.lst.flcb
-  -pages_for_ordering.each do |page|
+  -@pages_for_ordering.each do |page|
     %li{'data-sortable-id' => page.id}
       =image_tag("drag_icon.png", :class => "drag_icon")
       %span=page
       
-=form_tag([:order, page], :class => "flcb mt-2") do
-  -pages_for_ordering.each_with_index do |sortable, i|
+=form_tag(@page ? "/pages/#{@page.id}/order" : pages_order_path(@page), :class => "flcb mt-2") do
+  -@pages_for_ordering.each_with_index do |sortable, i|
     =hidden_field_tag("pages[#{i}][sortable_id]", sortable.id, :id => "sortable_id_#{i}")
   =submit_tag("Save order")
 

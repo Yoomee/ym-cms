@@ -3,9 +3,9 @@
   =form.input :title
   =form.input :short_title
   =form.input :text, :as => :redactor
-  -if !page.new_record? && page.image
+  -if !@page.new_record? && @page.image
     .control-group
-      =image_for(page, "100x100#")
+      =image_for(@page, "100x100#")
   =form.input :retained_image, :as => :hidden
   =form.input :image, :as => :file, :label => "Cover image"
   =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize", :label => "Layout"
@@ -15,6 +15,6 @@
     %label{:class => 'control-label'}
     .controls
       %label{:class => 'checkbox', :for => 'page_published_at'}
-        =publish_check_box(form, page)
+        =publish_check_box(form, @page)
         Published
   =form.input :published_at_s, :as => :string, :label => 'or publish at', :input_html => {:class => 'datetime'}
