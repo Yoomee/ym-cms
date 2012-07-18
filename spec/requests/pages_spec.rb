@@ -5,7 +5,7 @@ describe "Pages" do
   describe "GET /pages#index" do    
     before do
       FactoryGirl.create(:page, :title => "Published page")
-      FactoryGirl.create(:page, :title => "Not published page", :published_at => 1.day.from_now)
+      FactoryGirl.create(:page, :title => "Draft page", :draft => true)
     end
     describe "when current_user is admin" do
       before do
@@ -14,14 +14,14 @@ describe "Pages" do
       it "should show all pages" do
         visit pages_path
         page.should have_content("Published page")
-        page.should have_content("Unpublished page")
+        page.should have_content("Draft page")
       end
     end
     describe "when current_user is not admin" do
       it "should only show published pages" do
         visit pages_path
         page.should have_content("Published page")
-        page.should_not have_content("Unpublished page")
+        page.should_not have_content("Draft page")
       end
     end
   end
@@ -47,10 +47,10 @@ describe "Pages" do
         response.should render_template("views/tiled")
       end
       it "should only display published children" do        
-        FactoryGirl.create(:page, :title => "An unpublished page", :published_at => 1.day.from_now, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "A draft page", :draft => true, :parent => cms_page)
         FactoryGirl.create(:page, :title => "A published page", :parent => cms_page)
         visit page_path(cms_page)        
-        page.should_not have_content("An unpublished page")
+        page.should_not have_content("A draft page")
         page.should have_content("A published page")        
       end
     end
@@ -63,10 +63,10 @@ describe "Pages" do
         response.should render_template("views/list")
       end
       it "should only display published children" do        
-        FactoryGirl.create(:page, :title => "An unpublished page", :published_at => 1.day.from_now, :parent => cms_page)
+        FactoryGirl.create(:page, :title => "A draft page", :draft => true, :parent => cms_page)
         FactoryGirl.create(:page, :title => "A published page", :parent => cms_page)
         visit page_path(cms_page)        
-        page.should_not have_content("An unpublished page")
+        page.should_not have_content("A draft page")
         page.should have_content("A published page") 
       end
     end
