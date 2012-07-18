@@ -8,9 +8,6 @@ window.YmCms =
         YmCms.Page.Form.showViewTab()
         $('#page_view_name').change =>
           YmCms.Page.Form.showViewTab()
-        YmCms.Page.Form.updatePublishedAt()
-        $('#page_published_at').change =>
-          YmCms.Page.Form.updatePublishedAt()
       showViewTab: () ->
         $('#page_view_name option').not(':selected').each (idx,option) =>
           $('.tabbable .nav li').has("a[href='##{$(option).val()}']").hide()
@@ -19,14 +16,6 @@ window.YmCms =
       saveOrder: ->
         $('#orderable_pages li').each (idx, el) =>
           $('#sortable_id_' + idx).val $(el).data('sortable-id')
-      updatePublishedAt: () ->
-        datePickerField = $('#page_published_at_s_input')
-        if $('#page_published_at').attr('checked')
-          datePickerField.find('input').val ''
-          datePickerField.hide()
-        else
-          datePickerField.show()
-        
       
   Slideshow:
     Form:

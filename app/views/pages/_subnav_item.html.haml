@@ -2,7 +2,7 @@
 -depth = child_page.parents.size
 %li.subnav-item{:class => "#{active_item ? 'active' : ''}"}
   =link_to_self(child_page, :class => "subnav-#{depth}-link#{page==child_page ? ' active' : ''}")
-  %span.not_published="(Not published)" unless child_page.published?
+  %span.draft="(Draft)" if child_page.draft?
   - child_page_children = current_user.try(:admin?) ? child_page.all_children : child_page.children
   -if active_item && child_page_children.present?
     %ul{:class => "subnav-#{depth + 1}"}

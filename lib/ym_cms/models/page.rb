@@ -7,19 +7,17 @@ module YmCms::Page
     base.validates :slug, :uniqueness => true, :allow_blank => true
     base.belongs_to :parent, :class_name => "Page"
     base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
-    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => proc{["published_at <= ?", Time.now]}
+    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:draft => false}
     base.validate :parent_is_not_self_or_child
     base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image")    
     base.scope :root, base.where(:parent_id => nil)
-    base.scope :published, lambda {base.where(["published_at <= ?", Time.now])}
-    base.scope :latest, base.order("published_at DESC")
-    base.scope :for_month_and_year, lambda {|month, year| {:conditions => ["MONTH(published_at)=:month AND YEAR(published_at)=:year", {:month => month, :year => year}]}}
+    base.scope :published, lambda {base.where(:draft => false)}
+    base.scope :latest, base.order("IFNULL(publication_date, created_at) DESC")
+    base.scope :for_month_and_year, lambda {|month, year| {:conditions => ["MONTH(IFNULL(publication_date, created_at))=:month AND YEAR(IFNULL(publication_date, created_at))=:year", {:month => month, :year => year}]}}
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
-    base.send(:attr_writer, :published_at_s)
-    base.before_validation :update_published_at
   end
   
   module ClassMethods
@@ -35,14 +33,8 @@ module YmCms::Page
   end
   
   def published?
-    published_at && published_at <= Time.now
-  end
-  alias_method :published, :published?
-  
-  def published_at_s
-    published_at.try(:strftime, "%d/%m/%Y %H:%M") || ''
-  end
-  
+    !draft?
+  end  
   
   def root
     root? ? self : parent.root
@@ -65,10 +57,6 @@ module YmCms::Page
         errors.add(:parent, "can't be a child of this page")
       end
     end
-  end
-  
-  def update_published_at
-    self.published_at ||= DateTime.strptime(@published_at_s, "%d/%m/%Y %H:%M") unless @published_at_s.blank?
   end
   
 end

@@ -2,7 +2,7 @@
  *= require slideshow
 */
 
-.not_published {
+.draft {
   color: #B94A48;
 }
 .subnav ul {

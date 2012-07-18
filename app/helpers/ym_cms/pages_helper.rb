@@ -23,12 +23,4 @@ module YmCms::PagesHelper
     end.html_safe
   end
   
-  def publish_check_box(form, page)
-    if page && page.published_at && page.published_at <= Time.now
-      form.check_box :published_at, {:checked => true}, page.published_at, nil
-    else
-      form.check_box :published_at, {:checked => false}, Time.now, nil
-    end
-  end
-  
 end

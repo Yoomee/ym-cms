@@ -11,7 +11,7 @@ module YmCms
         copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
         if should_add_abilities?('Page')
-          add_ability(:open, "can :show, Page, :published => true")
+          add_ability(:open, "can :show, Page, :draft => false")
         end
         
         try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
@@ -19,6 +19,7 @@ module YmCms
         try_migration_template "migrations/add_user_id_to_pages.rb", "db/migrate/add_user_id_to_pages"
         try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
         try_migration_template "migrations/add_published_at_to_pages.rb", "db/migrate/add_published_at_to_pages"
+        try_migration_template "migrations/replace_published_at_with_draft_in_pages.rb", "db/migrate/replace_published_at_with_draft_in_pages"        
       end
       
       def self.next_migration_number(path)

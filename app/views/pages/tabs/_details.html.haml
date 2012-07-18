@@ -2,7 +2,11 @@
   =parent_page_select(form)
   =form.input :title
   =form.input :short_title
-  =form.input :text, :as => :redactor
+  .control-group
+    =form.label :publication_date
+    .controls
+      =form.date_select :publication_date, {:order => [:day, :month, :year], :prompt => @page.new_record?, :default => @page.created_at}, :class => "span2"
+  =form.input :text, :as => :redactor  
   -if !@page.new_record? && @page.image
     .control-group
       =image_for(@page, "100x100#")
@@ -11,10 +15,4 @@
   =form.input :view_name, :as => :select, :collection => Page::view_names, :include_blank => false, :member_label => "titleize", :label => "Layout"
   =form.input :permalink_path, :label => "Permalink"
   =form.input :slug if current_user.try(:yoomee_staff?)  
-  .boolean.control-group.optional#page_published_input
-    %label{:class => 'control-label'}
-    .controls
-      %label{:class => 'checkbox', :for => 'page_published_at'}
-        =publish_check_box(form, @page)
-        Published
-  =form.input :published_at_s, :as => :string, :label => 'or publish at', :input_html => {:class => 'datetime'}
+  =form.input :draft, :label => "This is a draft"

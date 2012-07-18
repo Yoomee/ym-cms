@@ -1,7 +1,7 @@
 -if can?(:show, page)
   %li
     =link_to_self(page)
-    %span.not_published="(Not published)" unless page.published?
+    %span.draft="(Draft)" if page.draft?
     -if page.all_children.present?
       %ul
         -page.all_children.each do |child|
