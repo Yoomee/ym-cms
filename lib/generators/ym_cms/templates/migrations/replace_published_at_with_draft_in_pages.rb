@@ -7,7 +7,7 @@ class ReplacePublishedAtWithDraftInPages < ActiveRecord::Migration
     Page.reset_column_information
     Page.all.each do |page|
       page.update_attribute(:publication_date, page.published_at)
-      page.update_attribute(:draft, page.published_at.nil? ? false : (page.published_at > Time.now))
+      page.update_attribute(:draft, page.published_at.nil? ? true : (page.published_at > Time.now))
     end
     
     remove_column :pages, :published_at
