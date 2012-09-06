@@ -28,6 +28,10 @@ module YmCms::Page
     
   end
   
+  def descendant_of_slug(slug_name)
+    parents.any?{|page| page.slug == slug_name.to_s}
+  end
+  
   def parents
     [parent, parent.try(:parents)].flatten.compact
   end
