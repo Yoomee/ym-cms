@@ -8,7 +8,7 @@ module YmCms::DisqusHelper
     var disqus_developer = #{(Rails.env == 'development' || http_basic_authenticated?) ? 1 : 0};
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '#{request.protocol}' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     JAVASCRIPT
@@ -25,7 +25,7 @@ module YmCms::DisqusHelper
     (function () {
         var s = document.createElement('script'); s.async = true;
         s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        s.src = '#{request.protocol}' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
     JAVASCRIPT
@@ -33,7 +33,7 @@ module YmCms::DisqusHelper
   end
 
   def disqus_latest
-    url = "http://#{disqus_shortname(shortname)}.disqus.com/recent_comments_widget.js?num_items=3&hide_avatars=1&avatar_size=32&excerpt_length=200"
+    url = "#{request.protocol}#{disqus_shortname(shortname)}.disqus.com/recent_comments_widget.js?num_items=3&hide_avatars=1&avatar_size=32&excerpt_length=200"
     javascript_include_tag(url)
   end 
   
