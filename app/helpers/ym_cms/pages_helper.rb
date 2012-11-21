@@ -4,7 +4,7 @@ module YmCms::PagesHelper
     options.reverse_merge!(:label => "Parent")
     current_page = form.object
     return "" if Page.without([current_page] + current_page.children).empty?
-    out = form.label(:parent_id, options[:label])
+    out = form.label(:parent_id, options[:label], :class => 'control-label')
     out << content_tag(:div, form.select(:parent_id, content_tag(:option) + parent_page_option_tags(current_page)), :class => 'controls')
     content_tag(:div, out, :class => 'select control-group optional', :id => 'page_parent_input')
   end
