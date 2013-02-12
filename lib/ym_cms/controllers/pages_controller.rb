@@ -23,6 +23,7 @@ module YmCms::PagesController
   
   def new
     set_user
+    @page.parent = Page.find_by_id(params[:parent_id])
   end
   
   def order
