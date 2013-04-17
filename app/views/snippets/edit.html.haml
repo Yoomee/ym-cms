@@ -1,0 +1,8 @@
+%h2="Edit #{@snippet.name}"
+
+=semantic_form_for(@snippet, :as => :snippet, :url => snippet_path) do |form|
+  =hidden_field_tag :return_to, request.referer
+  =form.inputs do
+    =form.input :text, :label => false, :input_html => {:rows => 4, :class => "span6", :placeholder => "Add a snippet..."}
+  =form.buttons do
+    =form.commit_button "Save"

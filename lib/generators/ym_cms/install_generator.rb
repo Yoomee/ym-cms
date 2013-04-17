@@ -10,6 +10,7 @@ module YmCms
         copy_file "models/page.rb", "app/models/page.rb"
         copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
+        copy_file "controllers/snippets_controller.rb", "app/controllers/snippets_controller.rb"
         if should_add_abilities?('Page')
           add_ability(:open, "can :show, Page, :draft => false")
         end

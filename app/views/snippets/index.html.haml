@@ -1,0 +1,15 @@
+%h1 All site snippets
+
+-if @snippets.empty?
+  %p There are no site snippets.
+-else
+  -@snippets. each do |snippet|
+    %dl
+      %dt
+        =snippet.name
+        %dd
+          =snippet.text
+          =edit_snippet_link(snippet.name)
+
+=options_panel do
+  =back_link
