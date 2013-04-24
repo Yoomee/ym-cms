@@ -1,0 +1,12 @@
+=form.inputs do
+  .radio_buttons.input.optional.control-group.hide#page_view_name_input
+    =form.label :view_name, 'Choose layout', :class => 'control-label'
+    .controls
+      -Page::view_names.each do |view_name|
+        .view-name
+          =form.label "view_name_#{view_name}", :class => 'choice radio' do
+            =form.radio_button :view_name, view_name
+            =view_name
+            %br
+            =image_tag("#{view_name}_page.png", :class => 'view-image') if Rails.application.assets.find_asset("#{view_name}_page.png")
+  .clearfix

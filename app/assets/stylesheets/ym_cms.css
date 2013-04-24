@@ -22,3 +22,15 @@ ul.subnav-1 > li {
 .subnav a.active {
   color: inherit;
 }
+#page {
+  position: relative;
+}
+#current-view {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#page_view_name_input .view-name {
+  float: left;
+  margin-right: 20px;
+}

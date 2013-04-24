@@ -1,12 +1,15 @@
 =content_for(:head) do
-  :javascript
-    $(document).ready(function() {
-      YmCms.Page.Form.init();  
-    });
-      
-=semantic_form_for(@page, :multipart => true) do |form|
-  =tabs('details', :form => form)
+  :coffeescript
+    $(document).ready ->
+      YmCms.Page.Form.init()
+      $('#show-page-view-inputs').click ->
+        $('#current-view').hide()
+        $('#page_view_name_input').show()
 
-  =form.buttons do
-    =form.commit_button "Save"
-    =#link_to("Cancel", page.new_record? ? pages_path : page, :class => "btn")
+=render 'current_view'
+=semantic_form_for(@page, :multipart => true) do |form|
+  =render 'view_input', :form => form
+  =tabs('details', :form => form)
+  =form.actions do
+    =form.action :submit, :label => 'Save'
+    =#link_to('Cancel', page.new_record? ? pages_path : page, :class => 'btn')
