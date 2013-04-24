@@ -2,14 +2,15 @@
   :coffeescript
     $(document).ready ->
       YmCms.Page.Form.init()
-      $('#show-page-view-inputs').click ->
+      $('#show-page-view-inputs').click (event) ->
+        event.preventDefault()
         $('#current-view').hide()
         $('#page_view_name_input').show()
 
 =render 'current_view'
 =semantic_form_for(@page, :multipart => true) do |form|
   =render 'view_input', :form => form
-  =tabs('details', :form => form)
+  =tabs('details', 'advanced', :form => form)
   =form.actions do
     =form.action :submit, :label => 'Save'
     =#link_to('Cancel', page.new_record? ? pages_path : page, :class => 'btn')

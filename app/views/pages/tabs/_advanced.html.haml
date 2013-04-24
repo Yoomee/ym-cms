@@ -1,0 +1,5 @@
+=form.inputs do
+  =parent_page_select(form)
+  =form.input :publication_date
+  =form.input :permalink_path, :label => 'Permalink'
+  =form.input :slug if current_user.try(:yoomee_staff?)
