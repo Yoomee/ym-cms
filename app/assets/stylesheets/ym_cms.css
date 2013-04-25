@@ -22,15 +22,33 @@ ul.subnav-1 > li {
 .subnav a.active {
   color: inherit;
 }
-#page {
-  position: relative;
+#view-name-inputs {
+  float: right;
 }
-#current-view {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-#page_view_name_input .view-name {
+#view-name-inputs label {
   float: left;
-  margin-right: 20px;
+  margin-right: 10px;
+  padding-top: 5px;
+}
+#view-name-inputs .btn.current-view-name {
+  cursor: default;
+}
+#view-name-inputs .btn.current-view-name:hover,
+#view-name-inputs .btn.current-view-name:active,
+#view-name-inputs .btn.current-view-name:focus {
+  background-position: 0;
+  background-image: linear-gradient(#FFF, #E6E6E6);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #F5F5F5;
+}
+#view-name-inputs .btn.current-view-name span {
+  cursor: default;
+  display: none;
+  width: 50px;
+  float: left;
+}
+#view-name-inputs .btn.current-view-name span.active {
+  display: block;
 }

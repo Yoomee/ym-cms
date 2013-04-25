@@ -47,7 +47,11 @@ module YmCms::Page
   def root?
     parent.nil?
   end
-  
+
+  def show_draft_submit_button?
+    draft? || new_record?
+  end
+
   def to_s
     (short_title.presence || title).html_safe
   end

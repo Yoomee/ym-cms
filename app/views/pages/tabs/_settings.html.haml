@@ -1,0 +1,10 @@
+=form.inputs do
+  =parent_page_select(form)
+  =form.input :short_title
+  =form.input :publication_date
+  =form.input :permalink_path, :label => 'Permalink'
+  =form.input :slug if current_user.try(:yoomee_staff?)
+  =form.input :draft, :label => 'Draft?' unless @page.show_draft_submit_button?
+  =form.input :html_title
+  =form.input :meta_description
+  =form.input :meta_keywords

@@ -1,6 +1,0 @@
-#current-view
-  %h5
-    Current view -
-    =@page.view_name
-  =image_tag("#{@page.view_name}_page.png", :class => 'current-view-image') if Rails.application.assets.find_asset("#{@page.view_name}_page.png")
-  =link_to 'Change layout', '#', :id => 'show-page-view-inputs'
