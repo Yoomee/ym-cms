@@ -9,6 +9,7 @@ module YmCms::Page
     base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
     base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:draft => false}
     base.validate :parent_is_not_self_or_child
+    base.before_create :set_publication_date
     base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image", :case_sensitive => false)    
     base.scope :root, base.where(:parent_id => nil)
@@ -53,6 +54,10 @@ module YmCms::Page
   end
   
   private
+  def set_publication_date
+    self.publication_date ||= Date.today
+  end
+  
   def parent_is_not_self_or_child
     if parent_id.present?
       if parent_id == id
