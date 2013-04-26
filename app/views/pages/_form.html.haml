@@ -7,6 +7,8 @@
   =render 'view_input', :form => form
   =tabs('content', 'extra', 'settings', :form => form)
   =form.actions do
-    =form.action :submit, :label => 'Publish', :button_html => { :class => 'pull-right btn btn-primary', :data => { :loading_text => 'Publishing', :primary => true } }
     -if @page.show_draft_submit_button?
+      =form.action :submit, :label => 'Publish', :button_html => { :class => 'pull-right btn btn-primary', :data => { :loading_text => 'Publishing...', :primary => true } }
       =form.action :submit, :label => 'Save as draft', :button_html => { :class => 'pull-right btn mr-2', :name => 'draft'}
+    -else
+      =form.action :submit, :label => 'Save', :button_html => { :class => 'pull-right btn btn-primary' }

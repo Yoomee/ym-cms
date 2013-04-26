@@ -52,3 +52,14 @@ ul.subnav-1 > li {
 #view-name-inputs .btn.current-view-name span.active {
   display: block;
 }
+.formtastic input,
+.formtastic textarea,
+.formtastic .uneditable-input {
+  width: 98%;
+}
+.formtastic textarea {
+  height: 100px;
+}
+.formtastic textarea.redactor {
+  height: auto;
+}
