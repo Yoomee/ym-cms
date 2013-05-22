@@ -11,8 +11,6 @@ require 'ym_cms/has_slideshow'
 ActiveRecord::Base.extend YmCms::HasSlideshow
 
 Dir[File.dirname(__FILE__) + '/ym_cms/models/*.rb'].each {|file| require file }
-
-require 'ym_cms/controllers/pages_controller'
-require 'ym_cms/controllers/slideshows_controller'
+Dir[File.dirname(__FILE__) + '/ym_cms/controllers/*.rb'].each {|file| require file }
 
 require 'rack/cache'
