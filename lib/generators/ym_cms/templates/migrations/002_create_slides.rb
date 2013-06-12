@@ -6,6 +6,9 @@ class CreateSlides < ActiveRecord::Migration
       t.text :caption
       t.string :image_uid
       t.integer :position
+      t.string :video_title
+      t.string :video_url
+      t.string :video_description
       t.timestamps
     end
     add_index :slides, :slideshow_id
