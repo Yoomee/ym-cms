@@ -19,5 +19,5 @@
       =back_link
       =link_if_can("Edit page", [:edit, @page])
       =link_if_can("Delete page", [:destroy, @page], :confirm => "Are you sure?") unless @page.slug.present?
-      =link_if_can("New page", new_child_page_path(:parent_id => @page.id)) if can?(:new,Page)
+      =link_if_can("New page", new_child_page_path(:parent_id => @page.id)) if can?(:new, Page.new)
       =link_if_can("Set order", [:order, @page])
