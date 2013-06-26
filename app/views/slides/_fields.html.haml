@@ -1,10 +1,15 @@
+-content_for :head do
+  :coffeescript
+    $ ->
+      Redactor.init()
+
 =slideshow_form.semantic_fields_for(:slides, slide) do |slide_form|
   =slide_form.inputs(:class => "inputs slide_inputs") do
     .row
       .span6
         -# TODO: allow editing of position (maybe drag drop)
         =#slide_form.input :position, :as => :string, :input_html => {:class => "span1"}
-        =slide_form.input :caption, :as => :text, :input_html => {:rows => 12, :class => 'span6'}
+        =slide_form.input :caption, :as => :redactor
       .span6
         %label.control-label Media
         -if !slide.new_record? && slide.image

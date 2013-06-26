@@ -1,0 +1,8 @@
+=semantic_form_for(@slideshow, :multipart => true) do |form|
+  =form.semantic_fields_for(:slideshow, @slideshow) do |slideshow_form|
+    =slideshow_form.input :independent_slideshow, :as => :hidden
+    =slideshow_form.input :title
+    =slideshow_form.input :slug
+  =render('fields', :slideshow => @slideshow, :form => form)
+  =form.actions do
+    =form.submit"Save"
