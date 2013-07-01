@@ -8,7 +8,7 @@
       %dt
         =snippet.name
         %dd
-          =snippet.text
+          =snippet.text.try(:html_safe)
           =edit_snippet_link(snippet.name)
 
 =options_panel do
