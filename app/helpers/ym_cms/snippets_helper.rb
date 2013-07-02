@@ -12,7 +12,7 @@ module YmCms::SnippetsHelper
       snippet.text = text
       snippet.save
     end
-    snippet.to_s.html_safe
+    snippet.to_s.try(:html_safe)
   end
 
 end
