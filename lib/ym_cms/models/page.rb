@@ -53,6 +53,14 @@ module YmCms::Page
     draft? || new_record?
   end
 
+  def summary(length = nil)
+    if read_attribute(:summary).present?
+      length ? read_attribute(:summary).truncate(length) : read_attribute(:summary)
+    else
+      text.truncate(length || 200)
+    end
+  end
+
   def to_s
     (short_title.presence || title).html_safe
   end
