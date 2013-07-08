@@ -57,7 +57,9 @@ module YmCms::Page
     if read_attribute(:summary).present?
       length ? read_attribute(:summary).truncate(length) : read_attribute(:summary)
     else
-      text.truncate(length || 200)
+      if text
+        text.truncate(length || 200)
+      end
     end
   end
 
