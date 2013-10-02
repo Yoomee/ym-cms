@@ -31,10 +31,10 @@ window.YmCms =
       newSlidesCount: 0,
       init: () ->
         $('fieldset .delete_slide_link').live 'click', (event) ->
-          if event.preventDefault then event.preventDefault() else event.returnValue = false
+          event.preventDefault()
           YmCms.Slideshow.Form.deleteSlide(`$(this)`)
-        $('#add_slide_link').click (event) ->
-          if event.preventDefault then event.preventDefault() else event.returnValue = false 
+        $('#add_slide_link').click (event) =>
+          event.preventDefault()
           YmCms.Slideshow.Form.addSlide()
         YmCms.Slideshow.Form.updateMediaType()
         $('.media_type_choice').live 'click', ->
@@ -42,7 +42,7 @@ window.YmCms =
       addSlide: () ->
         $('#add_slide_link').before(YmCms.Slideshow.Form.formattedSlideHtml())
       deleteSlide: (linkElem) ->
-        if (confirm("Are you sure?"))
+        if (window.confirm("Are you sure?"))
           fieldsetParent = linkElem.parents("fieldset:first")
           fieldsetParent.find(".destroy_input").val(1)
           fieldsetParent.fadeOut()
