@@ -30,11 +30,11 @@ window.YmCms =
       slideHtml: "",
       newSlidesCount: 0,
       init: () ->
-        $('fieldset .delete_slide_link').live ('click'), ->
-          event.preventDefault()
+        $('fieldset .delete_slide_link').live 'click', (event) ->
+          if event.preventDefault then event.preventDefault() else event.returnValue = false
           YmCms.Slideshow.Form.deleteSlide(`$(this)`)
-        $('#add_slide_link').click =>
-          event.preventDefault()
+        $('#add_slide_link').click (event) ->
+          if event.preventDefault then event.preventDefault() else event.returnValue = false 
           YmCms.Slideshow.Form.addSlide()
         YmCms.Slideshow.Form.updateMediaType()
         $('.media_type_choice').live 'click', ->
