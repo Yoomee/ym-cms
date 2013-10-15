@@ -1,3 +1,3 @@
 module YmCms
-  VERSION = "0.3.15"
+  VERSION = "1.0.7"
 end

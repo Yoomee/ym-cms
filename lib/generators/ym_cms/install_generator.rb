@@ -11,17 +11,15 @@ module YmCms
         copy_file "models/snippet.rb", "app/models/snippet.rb"
         copy_file "controllers/pages_controller.rb", "app/controllers/pages_controller.rb"
         copy_file "controllers/snippets_controller.rb", "app/controllers/snippets_controller.rb"
+
         if should_add_abilities?('Page')
           add_ability(:open, "can :show, Page, :draft => false")
         end
-        
-        try_migration_template "migrations/create_pages.rb", "db/migrate/create_pages"
-        try_migration_template "migrations/add_short_title_to_pages.rb", "db/migrate/add_short_title_to_pages"
-        try_migration_template "migrations/add_user_id_to_pages.rb", "db/migrate/add_user_id_to_pages"
-        try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
-        try_migration_template "migrations/add_published_at_to_pages.rb", "db/migrate/add_published_at_to_pages"
-        try_migration_template "migrations/replace_published_at_with_draft_in_pages.rb", "db/migrate/replace_published_at_with_draft_in_pages"        
-        try_migration_template "migrations/add_delta_to_pages.rb", "db/migrate/add_delta_to_pages"        
+
+        Dir[File.dirname(__FILE__) + '/templates/migrations/*.rb'].each do |file_path|
+          file_name = file_path.split("/").last
+          try_migration_template "migrations/#{file_name}", "db/migrate/#{file_name.sub(/^\d+\_/, '')}"
+        end
       end
       
       def self.next_migration_number(path)

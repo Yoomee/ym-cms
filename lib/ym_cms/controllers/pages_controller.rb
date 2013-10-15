@@ -7,6 +7,7 @@ module YmCms::PagesController
   
   def create
     set_user
+    set_draft
     if @page.save
       flash_notice(@page)
       redirect_to @page
@@ -37,6 +38,7 @@ module YmCms::PagesController
   end
   
   def update
+    set_draft
     if @page.update_attributes(params[:page])
       flash_notice(@page)
       redirect_to @page
@@ -54,6 +56,10 @@ module YmCms::PagesController
   end
   
   private
+  def set_draft
+    @page.draft = params[:draft].present?
+  end
+
   def set_user
     @page.user = current_user if @page.user.nil? && defined?(current_user)
   end

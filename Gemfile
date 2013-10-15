@@ -1,12 +1,11 @@
 source 'https://yoomee:wLjuGMTu30AvxVyIrq3datc73LVUkvo@gems.yoomee.com'
 source "http://rubygems.org"
 
-gem 'formtastic-bootstrap', :git => "git://github.com/cgunther/formtastic-bootstrap.git", :branch => "bootstrap-2"
+gem 'formtastic-bootstrap'
 
 # Declare your gem's dependencies in ym_cms.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
-gem "ym_tools"
 gemspec
 
 # Declare any dependencies that are still in development here instead of in

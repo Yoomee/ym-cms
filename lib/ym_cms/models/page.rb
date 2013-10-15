@@ -48,7 +48,21 @@ module YmCms::Page
   def root?
     parent.nil?
   end
-  
+
+  def show_draft_submit_button?
+    draft? || new_record?
+  end
+
+  def summary(length = nil)
+    if read_attribute(:summary).present?
+      length ? read_attribute(:summary).truncate(length) : read_attribute(:summary)
+    else
+      if text
+        text.truncate(length || 200)
+      end
+    end
+  end
+
   def to_s
     (short_title.presence || title).html_safe
   end

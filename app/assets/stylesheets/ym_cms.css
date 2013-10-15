@@ -22,3 +22,44 @@ ul.subnav-1 > li {
 .subnav a.active {
   color: inherit;
 }
+#view-name-inputs {
+  float: right;
+}
+#view-name-inputs label {
+  float: left;
+  margin-right: 10px;
+  padding-top: 5px;
+}
+#view-name-inputs .btn.current-view-name {
+  cursor: default;
+}
+#view-name-inputs .btn.current-view-name:hover,
+#view-name-inputs .btn.current-view-name:active,
+#view-name-inputs .btn.current-view-name:focus {
+  background-position: 0;
+  background-image: linear-gradient(#FFF, #E6E6E6);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #F5F5F5;
+}
+#view-name-inputs .btn.current-view-name span {
+  cursor: default;
+  display: none;
+  width: 50px;
+  float: left;
+}
+#view-name-inputs .btn.current-view-name span.active {
+  display: block;
+}
+.formtastic input,
+.formtastic textarea,
+.formtastic .uneditable-input {
+  width: 98%;
+}
+.formtastic textarea {
+  height: 100px;
+}
+.formtastic textarea.redactor {
+  height: auto;
+}
