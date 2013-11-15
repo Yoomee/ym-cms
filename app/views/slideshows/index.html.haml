@@ -1,0 +1,17 @@
+%h1 Slideshow
+-if Slideshow.count.zero?
+  %p There aren't any slideshows yet.
+-else
+  %ul.unstyled
+    -@slideshows.each do |slideshow|
+      %li
+        =image_for(slideshow.slides.first, "100x100#")
+        %span
+          =link_to slideshow.title, slideshow
+          =link_to "Edit", edit_slideshow_path(slideshow)
+          =link_to "Delete", slideshow_path(slideshow), :method => :delete, :confirm => "Are you sure you would like to delete this slideshow?"     
+        
+
+=options_panel do
+  =back_link
+  =link_if_can("New slideshow", [:new, Slideshow.new])

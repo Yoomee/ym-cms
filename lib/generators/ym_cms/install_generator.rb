@@ -21,7 +21,8 @@ module YmCms
         try_migration_template "migrations/create_snippets.rb", "db/migrate/create_snippets"
         try_migration_template "migrations/add_published_at_to_pages.rb", "db/migrate/add_published_at_to_pages"
         try_migration_template "migrations/replace_published_at_with_draft_in_pages.rb", "db/migrate/replace_published_at_with_draft_in_pages"        
-        try_migration_template "migrations/add_delta_to_pages.rb", "db/migrate/add_delta_to_pages"        
+        try_migration_template "migrations/add_delta_to_pages.rb", "db/migrate/add_delta_to_pages"
+        try_migration_template "migrations/add_title_to_slideshows.rb", "db/migrate/add_title_to_slideshows"
       end
       
       def self.next_migration_number(path)

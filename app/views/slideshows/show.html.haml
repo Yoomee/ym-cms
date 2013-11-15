@@ -1,0 +1,5 @@
+=render "slideshows/slideshow", :slideshow => @slideshow
+
+=options_panel do
+  =back_link
+  =link_if_can("Edit slideshow", [:edit, @slideshow])
