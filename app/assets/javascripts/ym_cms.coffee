@@ -12,7 +12,7 @@ window.YmCms =
           event.preventDefault()
         $('.set-view-name').click (event) ->
           event.preventDefault()
-          YmCms.Page.Form.updateView($(this).data('view-name'))
+          YmCms.Page.Form.updateView($(this).data('view-name'), $(this).data('view-title'))
       showViewTab: () ->
         $('#page_view_name option').not(':selected').each (idx,option) =>
           $('.tabbable .nav li').has("a[href='##{$(option).val()}']").hide()
@@ -21,10 +21,11 @@ window.YmCms =
       saveOrder: ->
         $('#orderable_pages li').each (idx, el) =>
           $('#sortable_id_' + idx).val $(el).data('sortable-id')
-      updateView: (view_name) ->
+      updateView: (view_name, view_title) ->
         $('input#page_view_name').val(view_name)
-        $('#view-name-inputs .btn.current-view-name span').removeClass('active')
-        $("#view-name-inputs .btn.current-view-name span##{view_name}").addClass('active')
+        $('span#page-view-title').html(view_title)
+        $('ul.dropdown-menu.page-view-names li').removeClass('active')
+        $("ul.dropdown-menu.page-view-names li##{view_name}").addClass('active')
       
   Slideshow:
     Form:

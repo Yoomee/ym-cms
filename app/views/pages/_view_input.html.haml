@@ -1,19 +1,14 @@
 #view-name-inputs
   %label Layout
   .btn-group
-    %button.btn.current-view-name
-      -Page::view_names.each do |view_name|
-        %span{ :class => @page.view_name == view_name ? 'active' : '', :id => view_name }
-          =image_tag("#{view_name}_page.png", :class => 'view-image') if Rails.application.assets.find_asset("#{view_name}_page.png")
-          =view_name.titleize
-
     %button.btn.dropdown-toggle{ :'data-toggle' => 'dropdown' }
-      %i.icon-caret-down
+      %span#page-view-title=@page.view_name.titleize
+      %i.fa.fa-caret-down
 
-    %ul.dropdown-menu{ :role => 'menu', :'aria-labelledby' => 'dropdownMenu' }
+    %ul.dropdown-menu.page-view-names{ :role => 'menu', :'aria-labelledby' => 'dropdownMenu' }
       -Page::view_names.each do |view_name|
-        %li
-          =link_to '#', :class => 'set-view-name', :data => { :view_name => view_name } do
+        %li{ :class => @page.view_name == view_name ? 'active' : '', :id => view_name }
+          =link_to '#', :class => 'set-view-name', :data => { :view_name => view_name, :view_title => view_name.titleize } do
             =image_tag("#{view_name}_page.png", :class => 'view-image') if Rails.application.assets.find_asset("#{view_name}_page.png")
             =view_name.titleize
 
