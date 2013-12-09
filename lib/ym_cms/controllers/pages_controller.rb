@@ -25,6 +25,7 @@ module YmCms::PagesController
   def new
     set_user
     @page.parent = Page.find_by_id(params[:parent_id])
+    @page.view_name = params[:view_name] if Page.view_names.include?(params[:view_name])
   end
   
   def order
