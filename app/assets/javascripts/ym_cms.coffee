@@ -53,7 +53,9 @@ window.YmCms =
           element = $(element)
           checkedVal = element.val()
           slideInputs = element.closest '.slide_inputs'
-          $(slideInputs.find(".#{checkedVal}_field")).show()
+          activeInput = $(slideInputs.find(".#{checkedVal}_field")).show()
+          activeInput.siblings('.image_field, .video_field').find("input").val("")
+          activeInput.show()
     init: (options) ->
       options = {} if options == undefined
       $('#slideshow-carousel').carousel(options)
