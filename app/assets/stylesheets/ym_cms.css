@@ -57,6 +57,9 @@ ul.subnav-1 > li {
 .formtastic .uneditable-input {
   width: 98%;
 }
+.formtastic input[type='submit'] {
+  width: auto;
+}
 .formtastic textarea {
   height: 100px;
 }
