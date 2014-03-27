@@ -19,7 +19,7 @@ window.YmCms =
         view_name = $('#page_view_name').val()
         $('.tabbable .nav li').has("a[href='##{view_name}']").show()
       saveOrder: ->
-        $('#orderable_pages li').each (idx, el) =>
+        $("[id ^= 'orderable_'] li").each (idx, el) =>
           $('#sortable_id_' + idx).val $(el).data('sortable-id')
       updateView: (view_name, view_title) ->
         $('input#page_view_name').val(view_name)
