@@ -7,18 +7,19 @@ module YmCms::Page
     base.validates :slug, :uniqueness => true, :allow_blank => true
     base.belongs_to :parent, :class_name => "Page"
     base.has_many :all_children, :class_name => "Page", :foreign_key => 'parent_id'
-    base.has_many :children, :class_name => "Page", :foreign_key => 'parent_id', :conditions => {:draft => false}
+    base.has_many :children, -> { where(:draft => false) }, :class_name => "Page", :foreign_key => 'parent_id'
     base.validate :parent_is_not_self_or_child
     base.before_create :set_publication_date
     base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image", :case_sensitive => false)    
-    base.scope :root, base.where(:parent_id => nil)
-    base.scope :published, lambda {base.where(:draft => false)}
+    base.scope :root, lambda { base.where(:parent_id => nil) }
+    base.scope :published, lambda { base.where(:draft => false) }
     base.scope :latest, base.order("IFNULL(publication_date, created_at) DESC")
     base.scope :for_month_and_year, lambda {|month, year| {:conditions => ["MONTH(IFNULL(publication_date, created_at))=:month AND YEAR(IFNULL(publication_date, created_at))=:year", {:month => month, :year => year}]}}
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
+    base.attr_protected
   end
   
   module ClassMethods
