@@ -12,14 +12,13 @@ module YmCms::Page
     base.before_create :set_publication_date
     base.belongs_to :user
     base.send(:validates_property, :format, :of => :image, :in => [:jpeg, :jpg, :png, :gif], :message => "must be an image", :case_sensitive => false)    
-    base.scope :root, lambda { base.where(:parent_id => nil) }
-    base.scope :published, lambda { base.where(:draft => false) }
-    base.scope :latest, base.order("IFNULL(publication_date, created_at) DESC")
+    base.scope :root, -> { base.where(:parent_id => nil) }
+    base.scope :published, -> { base.where(:draft => false) }
+    base.scope :latest, -> { base.order("IFNULL(publication_date, created_at) DESC") }
     base.scope :for_month_and_year, lambda {|month, year| {:conditions => ["MONTH(IFNULL(publication_date, created_at))=:month AND YEAR(IFNULL(publication_date, created_at))=:year", {:month => month, :year => year}]}}
     base.has_permalinks
     base.extend(ClassMethods)
     base.delegate(:slug, :to => :root, :prefix => true, :allow_nil => true)
-    base.attr_protected
   end
   
   module ClassMethods
