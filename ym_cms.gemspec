@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'ym_core', "~> 1.0"
   s.add_dependency "ym_permalinks", "~> 1.0"
-  s.add_dependency "ym_videos", "~> 1.0.0"
+  s.add_dependency "ym_videos", "~> 2.0"
   s.add_dependency "rack-cache"
 
   # for testing
