@@ -2,7 +2,7 @@ module YmCms::Snippet
   
   def self.included(base)
     base.belongs_to :item, :polymorphic => true
-    base.validate :name, :uniqueness => true, :scope => [:item_id, :item_type], :unless => Proc.new{|snippet| snippet.item_id.nil? || snippet.item_type.blank?}
+    base.validates :name, :uniqueness => {:scope => [:item_id, :item_type]}, :unless => Proc.new{|snippet| snippet.item_id.nil? || snippet.item_type.blank?}
     base.extend(ClassMethods)
   end
   
