@@ -15,39 +15,39 @@ module YmCms::PagesController
       render :action => "new"
     end
   end
-  
+
   def destroy
     @page.destroy
     flash_notice(@page)
     redirect_to @page.parent || pages_path
   end
-  
+
   def new
     set_user
     @page.parent = Page.find_by_id(params[:parent_id])
     @page.view_name = params[:view_name] if Page.view_names.include?(params[:view_name])
   end
-  
+
   def order
     @page = Page.find_by_id(params[:id])
     @pages_for_ordering = @page.present? ? (@page.children || []) : Page.root
   end
-  
+
   def show
     @page_children = @page.children || []
     render :action => "views/#{@page.view_name}"
   end
-  
+
   def update
     set_draft
-    if @page.update_attributes(params[:page])
+    if @page.update_attributes(page_params)
       flash_notice(@page)
       redirect_to @page
     else
       render :action => "edit"
     end
   end
-  
+
   def update_order
     params[:pages].each do |index, sortable_hash|
       puts "Updating page #{Page.find(sortable_hash[:sortable_id])} to position #{index}"
@@ -64,5 +64,10 @@ module YmCms::PagesController
   def set_user
     @page.user = current_user if @page.user.nil? && defined?(current_user)
   end
-  
+
+  def page_params
+    params.require(:page).permit(:parent_id, :slug, :title, :short_title, :text, :user_id, :position, :view_name, :image, :retained_image, :publication_date, :draft, :delta)
+  end
+
+
 end
