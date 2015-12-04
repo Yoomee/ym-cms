@@ -1,10 +1,10 @@
 module YmCms::PagesController
-  
+
   def self.included(base)
     base.load_and_authorize_resource
     base.send(:include, YmPermalinks::PermalinkableController)
   end
-  
+
   def create
     set_user
     set_draft
@@ -55,7 +55,7 @@ module YmCms::PagesController
     end
     redirect_to params[:id] ? page_path(params[:id]) : pages_path
   end
-  
+
   private
   def set_draft
     @page.draft = params[:draft].present?
@@ -66,7 +66,7 @@ module YmCms::PagesController
   end
 
   def page_params
-    params.require(:page).permit(:parent_id, :slug, :title, :short_title, :text, :user_id, :position, :view_name, :image, :retained_image, :publication_date, :draft, :delta)
+    params.require(:page).permit(:parent_id, :slug, :title, :short_title, :text, :user_id, :position, :view_name, :image, :retained_image, :publication_date, :draft, :delta, :permalink_path)
   end
 
 
