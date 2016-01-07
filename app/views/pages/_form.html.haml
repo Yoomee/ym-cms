@@ -1,14 +1,10 @@
-=content_for(:head) do
-  :coffeescript
-    $(document).ready ->
-      YmCms.Page.Form.init()
-
-=semantic_form_for @page, :html => { :id => 'page-form' } do |form|
-  =render 'view_input', :form => form
-  =tabs('content', 'extra', 'settings', :form => form)
-  =form.actions do
-    -if @page.show_draft_submit_button?
-      =form.action :submit, :label => 'Publish', :button_html => { :class => 'pull-right btn btn-primary', :data => { :loading_text => 'Publishing...', :primary => true } }
-      =form.action :submit, :label => 'Save as draft', :button_html => { :class => 'pull-right btn mr-2', :name => 'draft'}
-    -else
-      =form.action :submit, :label => 'Save', :button_html => { :class => 'pull-right btn btn-primary' }
+.ym-cms-form{data: {ym_cms_form_init: 'true'}}
+  =semantic_form_for @page, :html => { :id => 'page-form' } do |form|
+    =render 'view_input', :form => form
+    =tabs('content', 'extra', 'settings', :form => form)
+    =form.actions do
+      -if @page.show_draft_submit_button?
+        =form.action :submit, :label => 'Publish', :button_html => { :class => 'pull-right btn btn-primary', :data => { :loading_text => 'Publishing...', :primary => true } }
+        =form.action :submit, :label => 'Save as draft', :button_html => { :class => 'pull-right btn mr-2', :name => 'draft'}
+      -else
+        =form.action :submit, :label => 'Save', :button_html => { :class => 'pull-right btn btn-primary' }

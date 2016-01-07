@@ -1,15 +1,3 @@
--content_for(:head) do
-  :javascript
-    $(document).ready(function() {
-      $('#orderable_pages').sortable({
-        axis: "y",
-        handle: ".handle",
-        stop: function(event, ui) {
-          YmCms.Page.Form.saveOrder();
-        }
-      });
-    });
-
 -title @page ? "Root pages" : @page
 .row
   .span6.offset3
@@ -21,7 +9,7 @@
           .handle.well.well-small.mb-1
             %i.icon-move
             %span=page
-      
+
     =form_tag(@page ? "/pages/#{@page.id}/order" : pages_order_path(@page), :class => "flcb mt-2") do
       -@pages_for_ordering.each_with_index do |sortable, i|
         =hidden_field_tag("pages[#{i}][sortable_id]", sortable.id, :id => "sortable_id_#{i}")

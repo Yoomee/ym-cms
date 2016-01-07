@@ -1,10 +1,4 @@
-=content_for(:head) do
-  :javascript
-    $(document).ready(function() {
-      YmCms.Slideshow.init();
-    });
-
-#slideshow-carousel.carousel.slide
+#slideshow-carousel.carousel.slide{data: {slideshow_init: 'true'}}
   %ol.carousel-indicators
     -slideshow.slides.each_with_index do |slide, index|
       %li{ :class => index == 0 ? 'active' : '', :data => { :slide_to => index, :target => '#slideshow-carousel' } }
