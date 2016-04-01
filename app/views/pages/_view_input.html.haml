@@ -9,7 +9,7 @@
       -Page::view_names.each do |view_name|
         %li{ :class => @page.view_name == view_name ? 'active' : '', :id => view_name }
           =link_to '#', :class => 'set-view-name', :data => { :view_name => view_name, :view_title => view_name.titleize } do
-            =image_tag("#{view_name}_page.png", :class => 'view-image') if Rails.application.assets.find_asset("#{view_name}_page.png")
+            =image_tag("#{view_name}_page.png", :class => 'view-image') if Rails.application.assets_manifest.files.values.map{ |v| v['logical_path'] }.include?('#{view_name}_page.png')
             =view_name.titleize
 
   =form.input :view_name, :as => :hidden
